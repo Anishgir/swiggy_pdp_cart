@@ -1,0 +1,197 @@
+nav{
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: space-between;
+    align-items: center;
+    /* border: 3px solid black; */
+    padding: 0rem 12rem;
+}
+nav ul{
+    list-style-type: none;
+    /* border: 2px solid red; */
+    margin-right: 1rem;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+}
+nav ul li{
+    display: inline-block;
+    /* border: 2px solid yellow; */
+    margin-right: 1.4rem;
+    text-align: center;
+}
+nav ul li a{
+    text-decoration: none;
+    color: grey;
+    text-align: center;
+    margin-top: 0.5rem;
+}
+.setloc{
+    color: black;
+}
+.swiggylogo{
+    width: 50px;
+    height: 50px;
+}
+.user_iconlogo{
+    width: 25px;
+    height: 25px;
+}
+nav ul li  a:hover{
+    color: orange;
+}
+.header2{
+    background-color: rgb(241, 235, 235);
+}
+.header2 nav ul li{
+    margin-right: 0.7rem;
+}
+.header2 nav ul li a{
+    font-size: small;
+}
+.header2 nav ul li a:hover{
+    color: black;
+}
+.box1{
+    height: 15rem;
+    background-color: rgb(41, 29, 56);
+    display: flex;
+    margin-bottom: 0rem;
+}
+.box1 img{
+    width: 15%;
+    height: 75%;
+    margin-top: 2.1rem;
+    margin-left: 14rem;
+    border-radius: 3%;
+}
+.box1 div{
+    margin-left: 3rem;
+    /* border: 2px solid green; */
+}
+.box1 div h1{
+    color: white;
+    font-size: xx-large;
+    /* border: 2px solid blue; */
+    margin-top: 6rem;
+    margin-bottom: 0rem;
+}
+
+main{
+    display: flex;
+    flex-wrap: row wrap;
+    /* border: 2px solid red; */
+}
+
+#divleft{
+    /* border: 2px solid green; */
+    height: 40rem;
+    width: 25rem;
+    border-right: 0.5px solid grey;
+}
+
+#divleft ul{
+    list-style-type: none;
+    /* border: 2px solid black; */
+}
+
+#divleft ul h4{
+    /* border: 2px solid yellow; */
+    color: orange;
+    margin-bottom: 0.3rem;
+    margin-top: 0rem;
+    margin-left: 11rem;
+}
+
+#divleft ul li{
+    margin-bottom: 0.5rem;
+    margin-left: 11rem;
+}
+
+#divmiddle{
+    /* border: 2px solid green; */
+    height: 40rem;
+    width: 50rem;
+    border-right: 0.5px solid grey;
+}
+#divmiddle #top{
+    margin-left: 4rem;
+    margin-bottom: 3rem;
+    /* border: 2px solid green; */
+}
+
+#divmiddle .same{
+    margin-top: 3rem;
+    margin-left: 4rem;
+    height: 10rem;
+    
+    /* border: 2px solid green; */
+    border-bottom: 0.5px solid grey;
+}
+.same div{
+    width: 10px;
+    height: 10px;
+    border: 2px solid green;
+    margin-bottom: 2rem;
+}
+.same div p{
+    width: 9px;
+    height: 9px;
+    background-color: green;
+    border-radius: 50%;
+    margin-left: 0.5px;
+}
+#divmiddle div h3{
+    margin-bottom: 0rem;
+}
+
+#divmiddle .filledRect{
+    width: 10px;
+    height: 10px;
+    background-color: green;
+    border-radius: 50%;
+}
+
+#divmiddle div p{
+    margin-top: 0rem;
+    color: grey;
+    font-weight: 500;
+}
+
+#divright{
+    margin-left: 3rem;
+}
+
+#divright div h3{
+    margin-bottom: 0rem;
+}
+#divright div p{
+    margin-top: 0rem;
+    color: grey;
+    font-weight: 500;
+}
+
+#divright div span{
+    display: flex;
+    flex-direction: row wrap;
+    /* border: 2px solid red; */
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+}
+#divright div span p{
+    margin: 0;
+    padding: 0;
+}
+#extracharges{
+    /* border: 2px solid green; */
+    margin-top: 0;
+}
+#divright #checkout_btn{
+    width: 14rem;
+    height: 2.7rem;
+    background-color: rgb(16, 201, 16);
+    border-radius: 0.2rem;
+    border-color: rgb(16, 201, 16);
+}
