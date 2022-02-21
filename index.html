@@ -8,23 +8,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <section class = "header1">
+    <header class = "header1">
         <nav>
             <ul>
-                <li><a href=""> <img src="images/swiggylogo.png" class = "swiggylogo"> </a></li>
-                <li> <a href="" class="setloc"> <strong>Set location</strong> </a> </li>
-                <li class="chooseloc"> <a href=""> Click to Choose Location </a> </li>
+                <li><a href=""> <img src="images/swiggylogo.png" alt = "Food Image" class = "swiggylogo"> </a></li>
+                <li> <a href="" class="setloc">Set location</a> </li>
+                <li class="chooseloc"> <a href="">Click to Choose Location</a> </li>
             </ul>
             <ul>
-                <strong>
-                    <!-- <li><a href=""></a></li> -->
-                    <li><a href=""><strong>Help</strong></a></li>
-                    <li><a href=""><strong>Sign In</strong></a></li>
-                    <li><a href=""><strong>Cart</strong></a></li>
-                </strong>
+                <!-- <li><a href=""></a></li> -->
+                <li><a href="">Help</a></li>
+                <li><a href="">Sign In</a></li>
+                <li><a href="">Cart</a></li>
             </ul>
         </nav>
-    </section>
+    </header>
 
     <section class = "header2">
         <nav>
@@ -39,15 +37,13 @@
 
     <section class="box1">
         <img src="images/box1_image.jpeg" alt="">
-        <div>
-            <h1><strong>Punjabi Momos</strong></h1>
-        </div>
+        <h1><strong>Punjabi Momos</strong></h1>
     </section>
 
     <main>
-        <div id="divleft">
+        <div class="categories">
+            <h4>Recommended</h4>
             <ul>
-                <h4>Recommended</h4>
                 <li>
                     Chandano chowk ki birani
                 </li>
@@ -59,32 +55,32 @@
                 </li>
             </ul>
         </div>
-        <div id="divmiddle">
+        <div class="menu-items">
             <div id="top">
                 <h3>Recommended</h3>
                 <p>24 Items</p>
             </div>
-            <div class="same">
+            <div class="common">
                 <div>
-                    <p></p>
+                    <p></p>   <!-- created veg-mark using this -->
                 </div>
-                <p><strong>Kadhai Paneer Biryani</strong></p>
+                <p class="dishname">Kadhai Paneer Biryani</p>
                 <p> &#8377 249</p>
             </div>
-            <div class="same">
+            <div class="common">
                 <div>
                     <p></p>
                 </div>
-                <p><strong>Masala Chaap Biryani</strong></p>
+                <p class="dishname">Masala Chaap Biryani</p>
                 <p> &#8377 249</p>
             </div>
         </div>
-        <div id="divright">
-            <div class="same">
+        <div class="cart">
+            <div class="common">
                 <h3>Cart</h3>
                 <p>1 Items</p>
                 <br>
-                <p><strong>Kadhai Paneer Biryani</strong></p>
+                <p class="dishname">Kadhai Paneer Biryani</p>
                 <span>
                     <p>Subtotal</p>
                     <p> &#8377 249</p>

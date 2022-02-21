@@ -22,6 +22,7 @@ nav ul li{
 }
 nav ul li a{
     text-decoration: none;
+    font-weight: 700;
     color: grey;
     text-align: center;
     margin-top: 0.5rem;
@@ -65,13 +66,10 @@ nav ul li  a:hover{
     margin-left: 14rem;
     border-radius: 3%;
 }
-.box1 div{
-    margin-left: 3rem;
-    /* border: 2px solid green; */
-}
-.box1 div h1{
+.box1 h1{
     color: white;
     font-size: xx-large;
+    margin-left: 3rem;
     /* border: 2px solid blue; */
     margin-top: 6rem;
     margin-bottom: 0rem;
@@ -83,44 +81,43 @@ main{
     /* border: 2px solid red; */
 }
 
-#divleft{
+.categories{
     /* border: 2px solid green; */
     height: 40rem;
     width: 25rem;
     border-right: 0.5px solid grey;
 }
 
-#divleft ul{
+.categories ul{
     list-style-type: none;
     /* border: 2px solid black; */
 }
 
-#divleft ul h4{
+.categories h4{
     /* border: 2px solid yellow; */
     color: orange;
     margin-bottom: 0.3rem;
-    margin-top: 0rem;
-    margin-left: 11rem;
+    margin-left: 13.5rem;
 }
 
-#divleft ul li{
+.categories ul li{
     margin-bottom: 0.5rem;
     margin-left: 11rem;
 }
 
-#divmiddle{
+.menu-items{
     /* border: 2px solid green; */
     height: 40rem;
     width: 50rem;
     border-right: 0.5px solid grey;
 }
-#divmiddle #top{
+.menu-items #top{
     margin-left: 4rem;
     margin-bottom: 3rem;
     /* border: 2px solid green; */
 }
 
-#divmiddle .same{
+.menu-items .common{
     margin-top: 3rem;
     margin-left: 4rem;
     height: 10rem;
@@ -128,50 +125,53 @@ main{
     /* border: 2px solid green; */
     border-bottom: 0.5px solid grey;
 }
-.same div{
+
+.common div{
     width: 10px;
     height: 10px;
     border: 2px solid green;
     margin-bottom: 2rem;
 }
-.same div p{
+.common div p{
     width: 9px;
     height: 9px;
     background-color: green;
     border-radius: 50%;
     margin-left: 0.5px;
 }
-#divmiddle div h3{
+.common .dishname{
+    font-weight: 700;
+}
+.menu-items div h3{
     margin-bottom: 0rem;
 }
 
-#divmiddle .filledRect{
+.menu-items .filledRect{
     width: 10px;
     height: 10px;
     background-color: green;
     border-radius: 50%;
 }
 
-#divmiddle div p{
+.menu-items div p{
     margin-top: 0rem;
     color: grey;
     font-weight: 500;
 }
 
-#divright{
+.cart{
     margin-left: 3rem;
 }
 
-#divright div h3{
+.cart div h3{
     margin-bottom: 0rem;
 }
-#divright div p{
+.cart div p{
     margin-top: 0rem;
     color: grey;
     font-weight: 500;
 }
-
-#divright div span{
+.cart div span{
     display: flex;
     flex-direction: row wrap;
     /* border: 2px solid red; */
@@ -180,7 +180,7 @@ main{
     margin-top: 0.5rem;
     margin-bottom: 0;
 }
-#divright div span p{
+.cart div span p{
     margin: 0;
     padding: 0;
 }
@@ -188,7 +188,7 @@ main{
     /* border: 2px solid green; */
     margin-top: 0;
 }
-#divright #checkout_btn{
+.cart #checkout_btn{
     width: 14rem;
     height: 2.7rem;
     background-color: rgb(16, 201, 16);
