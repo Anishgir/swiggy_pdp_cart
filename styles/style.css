@@ -58,6 +58,7 @@ nav ul li  a:hover{
     background-color: rgb(41, 29, 56);
     display: flex;
     margin-bottom: 0rem;
+    align-items: center;
 }
 .box1 img{
     width: 15%;
@@ -71,8 +72,6 @@ nav ul li  a:hover{
     font-size: xx-large;
     margin-left: 3rem;
     /* border: 2px solid blue; */
-    margin-top: 6rem;
-    margin-bottom: 0rem;
 }
 
 main{
