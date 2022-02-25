@@ -3,12 +3,10 @@ nav{
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    /* border: 3px solid black; */
-    padding: 0rem 12rem;
+    padding: 0rem 11.6rem;
 }
 nav ul{
     list-style-type: none;
-    /* border: 2px solid red; */
     margin-right: 1rem;
     display: flex;
     flex-flow: row nowrap;
@@ -16,7 +14,6 @@ nav ul{
 }
 nav ul li{
     display: inline-block;
-    /* border: 2px solid yellow; */
     margin-right: 1.4rem;
     text-align: center;
 }
@@ -25,19 +22,15 @@ nav ul li a{
     font-weight: 700;
     color: grey;
     text-align: center;
-    margin-top: 0.5rem;
 }
 .setloc{
     color: black;
 }
-.swiggylogo{
+.header1__swiggylogo{
     width: 50px;
     height: 50px;
 }
-.user_iconlogo{
-    width: 25px;
-    height: 25px;
-}
+
 nav ul li  a:hover{
     color: orange;
 }
@@ -53,90 +46,69 @@ nav ul li  a:hover{
 .header2 nav ul li a:hover{
     color: black;
 }
-.box1{
-    height: 15rem;
+
+.banner{
     background-color: rgb(41, 29, 56);
     display: flex;
-    margin-bottom: 0rem;
     align-items: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    padding-left: 14rem;
 }
-.box1 img{
-    width: 15%;
-    height: 75%;
-    margin-top: 2.1rem;
-    margin-left: 14rem;
-    border-radius: 3%;
+
+.banner img{
+    width: 300px;
+    height: 200px;
 }
-.box1 h1{
+.banner h1{
     color: white;
     font-size: xx-large;
     margin-left: 3rem;
-    /* border: 2px solid blue; */
 }
 
 main{
     display: flex;
     flex-wrap: row wrap;
-    /* border: 2px solid red; */
+    min-height: calc(100vh - 440px);
 }
 
 .categories{
-    /* border: 2px solid green; */
-    height: 40rem;
-    width: 25rem;
     border-right: 0.5px solid grey;
+    overflow-y: auto;
 }
 
 .categories ul{
     list-style-type: none;
-    /* border: 2px solid black; */
 }
 
-.categories h4{
-    /* border: 2px solid yellow; */
+.categories__recommended{
     color: orange;
-    margin-bottom: 0.3rem;
-    margin-left: 13.5rem;
 }
 
 .categories ul li{
     margin-bottom: 0.5rem;
-    margin-left: 11rem;
+    padding-left: 11rem;
 }
 
 .menu-items{
-    /* border: 2px solid green; */
-    height: 40rem;
     width: 50rem;
     border-right: 0.5px solid grey;
+    padding-left: 4rem;
 }
 .menu-items #top{
-    margin-left: 4rem;
     margin-bottom: 3rem;
-    /* border: 2px solid green; */
 }
 
 .menu-items .common{
     margin-top: 3rem;
-    margin-left: 4rem;
-    height: 10rem;
-    
-    /* border: 2px solid green; */
+    padding-bottom: 3rem;
     border-bottom: 0.5px solid grey;
 }
 
-.common div{
-    width: 10px;
-    height: 10px;
-    border: 2px solid green;
-    margin-bottom: 2rem;
-}
-.common div p{
-    width: 9px;
-    height: 9px;
-    background-color: green;
-    border-radius: 50%;
-    margin-left: 0.5px;
+.common img{
+    width: 15px;
+    height: 15px;
+    margin-bottom: 0.5rem;
 }
 .common .dishname{
     font-weight: 700;
@@ -144,14 +116,6 @@ main{
 .menu-items div h3{
     margin-bottom: 0rem;
 }
-
-.menu-items .filledRect{
-    width: 10px;
-    height: 10px;
-    background-color: green;
-    border-radius: 50%;
-}
-
 .menu-items div p{
     margin-top: 0rem;
     color: grey;
@@ -159,7 +123,7 @@ main{
 }
 
 .cart{
-    margin-left: 3rem;
+    padding-left: 3rem;
 }
 
 .cart div h3{
@@ -173,7 +137,6 @@ main{
 .cart div span{
     display: flex;
     flex-direction: row wrap;
-    /* border: 2px solid red; */
     align-items: center;
     justify-content: space-between;
     margin-top: 0.5rem;
@@ -184,13 +147,56 @@ main{
     padding: 0;
 }
 #extracharges{
-    /* border: 2px solid green; */
     margin-top: 0;
 }
-.cart #checkout_btn{
-    width: 14rem;
+#checkout_btn{
+    width: 100%;
     height: 2.7rem;
     background-color: rgb(16, 201, 16);
-    border-radius: 0.2rem;
     border-color: rgb(16, 201, 16);
+    cursor: pointer;
+}
+
+.footer{
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: black;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.footer p{
+    color: white;
+    font-size: 20px;
+}
+.footer img{
+    width: 90px;
+    height: 40px;
+}
+.footer ul{
+    list-style-type: none;
+}
+.footer ul li{
+    display: inline-block;
+}
+.footer ul img{
+    width: 30px;
+    height: 30px;
+    margin-right: 1.5rem;
+}
+
+
+.col-2{
+    flex-basis: 16%;
+}
+.col-3{
+    flex-basis: 25%;
+}
+.col-4{
+    flex-basis: 33%;
+}
+.col-5{
+    flex-basis: 42%;
+}
+.col-6{
+    flex-basis: 50%;
 }

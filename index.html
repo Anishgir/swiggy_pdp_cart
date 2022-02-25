@@ -11,7 +11,7 @@
     <header class = "header1">
         <nav>
             <ul>
-                <li><a href=""> <img src="images/swiggylogo.png" alt = "swiggylogo" class = "swiggylogo"> </a></li>
+                <li><a href=""> <img src="images/swiggylogo.png" alt = "swiggylogo" class = "header1__swiggylogo"> </a></li>
                 <li> <a href="" class="setloc">Set location</a> </li>
                 <li class="chooseloc"> <a href="">Click to Choose Location</a> </li>
             </ul>
@@ -35,15 +35,17 @@
         </nav>
     </section>
 
-    <section class="box1">
+    <section class="banner">
         <img src="images/box1_image.jpeg" alt = "Food image">
-        <h1><strong>Punjabi Momos</strong></h1>
+        <h1>Punjabi Momos</h1>
     </section>
 
-    <main>
-        <div class="categories">
-            <h4>Recommended</h4>
+    <main class="row">
+        <div class="categories col-3">
             <ul>
+                <li class = "categories__recommended">
+                    Recommended
+                </li>
                 <li>
                     Chandano chowk ki birani
                 </li>
@@ -55,28 +57,24 @@
                 </li>
             </ul>
         </div>
-        <div class="menu-items">
+        <div class="menu-items col-5">
             <div id="top">
                 <h3>Recommended</h3>
                 <p>24 Items</p>
             </div>
             <div class="common">
-                <div>
-                    <p></p>   <!-- created veg-mark using this -->
-                </div>
+                <img src="images/veg_mark.png" alt="veg mark logo">
                 <p class="dishname">Kadhai Paneer Biryani</p>
                 <p> &#8377 249</p>
             </div>
             <div class="common">
-                <div>
-                    <p></p>
-                </div>
+                <img src="images/veg_mark.png" alt="veg mark logo">
                 <p class="dishname">Masala Chaap Biryani</p>
                 <p> &#8377 249</p>
             </div>
         </div>
-        <div class="cart">
-            <div class="common">
+        <div class="cart col-2">
+            <div>
                 <h3>Cart</h3>
                 <p>1 Items</p>
                 <br>
@@ -85,10 +83,20 @@
                     <p>Subtotal</p>
                     <p> &#8377 249</p>
                 </span>
-                <p id="extracharges"><small>Extra charges may apply<small></p>
+                <p id="extracharges"><small>Extra charges may apply</small></p>
                 <button id="checkout_btn">Checkout &#8594 </button>
             </div>
         </div>
     </main>
+    <footer class="footer">
+        <img src="images/swiggy.png" alt="swiggy">
+        <p>2022 Swiggy</p>
+        <ul>
+            <li><img src="images/facebook.png" alt="facebook logo"></li>
+            <li><img src="images/pinterest.png" alt="pinterest logo"></li>
+            <li><img src="images/instagram.png" alt="instagram logo"></li>
+            <li><img src="images/twitter.png" alt="twitter logo"></li>
+        </ul>
+    </footer>
 </body>
 </html>
