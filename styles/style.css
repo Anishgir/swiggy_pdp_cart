@@ -26,7 +26,7 @@ nav ul li a{
 .setloc{
     color: black;
 }
-.header1__swiggylogo{
+.swiggy-logo{
     width: 50px;
     height: 50px;
 }
@@ -34,16 +34,16 @@ nav ul li a{
 nav ul li  a:hover{
     color: orange;
 }
-.header2{
+.home{
     background-color: rgb(241, 235, 235);
 }
-.header2 nav ul li{
+.home nav ul li{
     margin-right: 0.7rem;
 }
-.header2 nav ul li a{
+.home nav ul li a{
     font-size: small;
 }
-.header2 nav ul li a:hover{
+.home nav ul li a:hover{
     color: black;
 }
 
