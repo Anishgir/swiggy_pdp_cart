@@ -66,7 +66,7 @@ divCart.innerHTML = `<div class = "cartDescription">
                         <h3>Cart</h3>
                         <p>${cartItems.lineItems.length} Items</p>
                         <br>
-                        <p class="dishname">Kadhai Paneer Biryani</p>
+                        <p class="dishname">${cartItems.lineItems[0].name}</p>
                         <span>
                             <p>Subtotal</p>
                             <p> &#8377 ${cartItems.subTotal}</p>
@@ -77,4 +77,5 @@ divCart.innerHTML = `<div class = "cartDescription">
 
 console.log(divMenuItems);
 main.append(divCategories,divMenuItems,divCart);
-body.append(main);
+
+
