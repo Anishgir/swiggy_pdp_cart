@@ -12,6 +12,13 @@ const cartItems = {"lineItems":[{"id":"1121","name":"Plain Veg Biryani","quantit
 
 
 const mp = new Map();
+
+categories.forEach(element => {
+  if(!mp.has(element.displayName.toLowerCase())){
+    mp.set(element.displayName.toLowerCase(),[]);
+  }
+});
+
 menuItems.forEach(element => {
   element.categories.forEach(key => {
     if(!mp.has(key)){
@@ -36,12 +43,14 @@ divCategories.append(ulCategories);
 
 const divMenuItems = document.querySelector(".menu-items");
 
-for(const [key, value] of mp.entries()){
+function addCategories(key){
+  const divcontainer = document.createElement("div");
+  divcontainer.classList = "catContainer";
   const divTop = document.createElement("div");
   divTop.className = "top";
   divTop.innerHTML = `<h3>${key}</h3>
                       <p>${mp.get(key).length} Items</p>`
-  divMenuItems.append(divTop);
+  divcontainer.append(divTop);
 
   for(let i=0;i<mp.get(key).length;i++){
     const divDiscription = document.createElement("div");
@@ -56,8 +65,13 @@ for(const [key, value] of mp.entries()){
                                 <button class="addItem">ADD</button>
                                 </div>`;
 
-    divMenuItems.append(divDiscription);
+    divcontainer.append(divDiscription);
   }
+  divMenuItems.append(divcontainer);
+} 
+
+for(const [key, value] of mp.entries()){
+  addCategories(key);
 }
 
 const divCart = document.querySelector(".cart");
@@ -66,7 +80,7 @@ divCart.innerHTML = `<div class = "cartDescription">
                         <h3>Cart</h3>
                         <p>${cartItems.lineItems.length} Items</p>
                         <br>
-                        <p class="dishname">Kadhai Paneer Biryani</p>
+                        <p class="dishname">${cartItems.lineItems[0].name}</p>
                         <span>
                             <p>Subtotal</p>
                             <p> &#8377 ${cartItems.subTotal}</p>
@@ -75,6 +89,12 @@ divCart.innerHTML = `<div class = "cartDescription">
                         <button id="checkout_btn">Checkout &#8594 </button>
                       </div>`
 
-console.log(divMenuItems);
+document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event=>{
+  divMenuItems.innerHTML = "";
+  let key = event.target.innerText.toLowerCase();
+  addCategories(key);
+  // event.target.style.color = 'orange';
+  console.log(key);
+}));
+
 main.append(divCategories,divMenuItems,divCart);
-body.append(main);
