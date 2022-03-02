@@ -27,7 +27,6 @@ header div a:hover{
 }
 .swiggy-logo{
     max-width: 50px;
-    height: 50px;
 }
 .nav-bar{
     padding-left: 11.6rem;
@@ -64,7 +63,6 @@ header div a:hover{
 }
 .banner img{
     max-width: 300px;
-    height: 200px;
 }
 .banner h1{
     color: white;
@@ -83,7 +81,7 @@ main{
 .categories ul{
     list-style-type: none;
 }
-.category-recommended{
+.category-highlight{
     color: orange;
 }
 .categories ul li{
@@ -104,7 +102,6 @@ main{
 }
 .item-description img{
     max-width: 15px;
-    height: 15px;
     margin-bottom: 0.5rem;
 }
 .item-description .dishname{
@@ -141,11 +138,11 @@ main{
     margin: 0;
     padding: 0;
 }
-#charges-description{
+.charges-description{
     margin-top: 0;
     font-size: 13px;
 }
-#checkout-btn{
+.checkout-btn{
     width: 100%;
     height: 2.7rem;
     background-color: rgb(16, 201, 16);
@@ -165,7 +162,6 @@ main{
 }
 .footer img{
     max-width: 90px;
-    height: 40px;
 }
 .footer ul{
     list-style-type: none;
@@ -175,7 +171,6 @@ main{
 }
 .footer ul img{
     max-width: 30px;
-    height: 30px;
     margin-right: 1.5rem;
 }
 .col-2{
