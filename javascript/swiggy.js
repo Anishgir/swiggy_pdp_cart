@@ -149,5 +149,17 @@ const pdpModule = (function() {
 				</div>`;
     }
     cartContainer.innerHTML = addCartDescription();
+
+	document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event => {
+		menuItemsContainer.innerHTML = "";
+		let key = event.target.innerText.toLowerCase();
+		addCategory(key);
+		event.target.style.color = 'orange';
+		document.querySelectorAll('.categories ul li').forEach(element => {
+			if (event.target.id != element.id)
+				element.style.color = 'black';
+		})
+		console.log(key);
+	}));
     main.append(categoriesContainer, menuItemsContainer, cartContainer);
 })();
