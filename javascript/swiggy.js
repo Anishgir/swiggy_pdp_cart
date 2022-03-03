@@ -69,26 +69,31 @@ const pdpModule = (function() {
     const cartItems = fetchCartItems();
 
     const itemsByCategoryMap = new Map();
-    menuItems.forEach(element => {
-        element.categories.forEach(key => {
-            if (!itemsByCategoryMap.has(key)) {
-                itemsByCategoryMap.set(key, []);
-            }
-            itemsByCategoryMap.get(key).push(element);
-        });
-    });
+
+	function addItemByCategoryInMap(key,element){
+		if (!itemsByCategoryMap.has(key)) {
+			itemsByCategoryMap.set(key, []);
+		}
+		itemsByCategoryMap.get(key).push(element);
+	}
+	function makeItemsByCategoryMap(element){
+			element.categories.forEach(key => addItemByCategoryInMap(key,element));
+	}
+	
+    menuItems.forEach(element => makeItemsByCategoryMap(element));
 
     const main = document.querySelector("main");
 
     const categoriesContainer = document.querySelector(".categories");
 
     const categoriesList = document.createElement("ul");
-    categories.forEach(element => {
+	function addListItemInCategoryList(element){
         const categoryName = document.createElement("li");
         categoryName.id = element.id;
         categoryName.innerText = element.displayName;
         categoriesList.append(categoryName);
-    });
+    }
+    categories.forEach(element => addListItemInCategoryList(element));
     categoriesContainer.append(categoriesList);
 
     const menuItemsContainer = document.querySelector(".menu-items");
@@ -118,7 +123,7 @@ const pdpModule = (function() {
         menuItemsContainer.append(itemContainer);
     }
 
-    function addCategory(key) {
+    function addCategoryToMenuItems(key) {
         const categoryInfoContainer = document.createElement("div");
         categoryInfoContainer.className = "category-info";
         categoryInfoContainer.innerHTML = addCategoryInfo(key);
@@ -129,7 +134,7 @@ const pdpModule = (function() {
     }
 
     for (const [key, value] of itemsByCategoryMap.entries()) {
-        addCategory(key);
+        addCategoryToMenuItems(key);
     }
 
     const cartContainer = document.querySelector(".cart");
@@ -149,17 +154,5 @@ const pdpModule = (function() {
 				</div>`;
     }
     cartContainer.innerHTML = addCartDescription();
-
-	document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event => {
-		menuItemsContainer.innerHTML = "";
-		let key = event.target.innerText.toLowerCase();
-		addCategory(key);
-		event.target.style.color = 'orange';
-		document.querySelectorAll('.categories ul li').forEach(element => {
-			if (event.target.id != element.id)
-				element.style.color = 'black';
-		})
-		console.log(key);
-	}));
     main.append(categoriesContainer, menuItemsContainer, cartContainer);
 })();
