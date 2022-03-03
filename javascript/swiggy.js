@@ -149,7 +149,7 @@ const pdpModule = (function() {
 					<p>Subtotal</p>
 					<p> &#8377 ${cartItems.subTotal}</p>
 				</span>
-				<p class="charges-description"><small>Extra charges may apply</small></p>
+				<p class="charges-description">Extra charges may apply</p>
 				<button class="checkout-btn">Checkout &#8594 </button>
 				</div>`;
     }
