@@ -5,14 +5,13 @@ a{
     text-decoration: none;
 }
 header{
-    padding: 0.5rem 0;
+    padding: 0.5rem 13.5rem;
 }
 header div{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem 6.6rem;
 }
 header div ul{
     display: flex;
