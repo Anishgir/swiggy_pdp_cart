@@ -62,6 +62,40 @@ function fetchCartItems() {
 }
 
 const pdpModule = (function() {
+
+    // Templates 
+    function addCategoryInfoTemplate(itemsByCategoryMap, key) {
+        return `<h3>${key}</h3>
+		<p>${itemsByCategoryMap.get(key).length} Items</p>`
+    }
+
+    function createItemTemplate(itemsByCategoryMap, key, index) {
+        return `<div>
+		<img src="images/veg_mark.png" alt="Veg Mark Logo" class="veg-mark">
+		<p class="dish-name">${itemsByCategoryMap.get(key)[index].displayName}</p>
+		<p> &#8377 ${itemsByCategoryMap.get(key)[index].price}</p>
+		</div>
+		<div class="container">
+		<img src=${itemsByCategoryMap.get(key)[index].imgUrl} alt="food Image" class=item-image>
+		<button class="add-item-btn">ADD</button>
+		</div>`;
+    }
+
+    function createCartDescriptionTemplate(cartItems) {
+        return `<div class = "cart-description">
+        <h3>Cart</h3>
+        <p>${cartItems.lineItems.length} Items</p>
+        <br>
+        <p class="dish-name">${cartItems.lineItems[0].name}</p>
+        <span>
+            <p>Subtotal</p>
+            <p> &#8377 ${cartItems.subTotal}</p>
+        </span>
+        <p class="charges-description">Extra charges may apply</p>
+        <button class="checkout-btn">Checkout &#8594 </button>
+        </div>`;
+    }
+
     const categories = fetchCategories();
 
     const menuItems = fetchMenuItems();
@@ -104,23 +138,6 @@ const pdpModule = (function() {
 
     const menuItemsContainer = document.querySelector(".menu-items");
 
-    function addCategoryInfo(itemsByCategoryMap, key) {
-        return `<h3>${key}</h3>
-		<p>${itemsByCategoryMap.get(key).length} Items</p>`
-    }
-
-    function createItemTemplate(itemsByCategoryMap, key, index) {
-        return `<div>
-		<img src="images/veg_mark.png" alt="Veg Mark Logo" class="veg-mark">
-		<p class="dish-name">${itemsByCategoryMap.get(key)[index].displayName}</p>
-		<p> &#8377 ${itemsByCategoryMap.get(key)[index].price}</p>
-		</div>
-		<div class="container">
-		<img src=${itemsByCategoryMap.get(key)[index].imgUrl} alt="food Image" class=item-image>
-		<button class="add-item-btn">ADD</button>
-		</div>`;
-    }
-
     function addItemToCartegory(itemsByCategoryMap, key, index) {
         const itemContainer = document.createElement("div");
         itemContainer.className = "item-description";
@@ -132,7 +149,7 @@ const pdpModule = (function() {
     function addMenuItemsToCategory(itemsByCategoryMap, key) {
         const categoryInfoContainer = document.createElement("div");
         categoryInfoContainer.className = "category-info";
-        categoryInfoContainer.innerHTML = addCategoryInfo(itemsByCategoryMap, key);
+        categoryInfoContainer.innerHTML = addCategoryInfoTemplate(itemsByCategoryMap, key);
         menuItemsContainer.append(categoryInfoContainer);
         for (let i = 0; i < itemsByCategoryMap.get(key).length; i++) {
             addItemToCartegory(itemsByCategoryMap, key, i);
@@ -148,21 +165,6 @@ const pdpModule = (function() {
     addCategoriesToMenuList(itemsByCategoryMap);
 
     const cartContainer = document.querySelector(".cart");
-
-    function createCartDescriptionTemplate(cartItems) {
-        return `<div class = "cart-description">
-				<h3>Cart</h3>
-				<p>${cartItems.lineItems.length} Items</p>
-				<br>
-				<p class="dish-name">${cartItems.lineItems[0].name}</p>
-				<span>
-					<p>Subtotal</p>
-					<p> &#8377 ${cartItems.subTotal}</p>
-				</span>
-				<p class="charges-description">Extra charges may apply</p>
-				<button class="checkout-btn">Checkout &#8594 </button>
-				</div>`;
-    }
     cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
     main.append(categoriesContainer, menuItemsContainer, cartContainer);
 })();
