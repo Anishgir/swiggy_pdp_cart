@@ -61,46 +61,68 @@ function fetchCartItems() {
     }
 }
 
+// Templates 
+function createCategoryInfoTemplate(itemsByCategoryMap, key) {
+    const itemList = getItemList(itemsByCategoryMap, key);
+    return `<h3>${key}</h3>
+    <p>${itemList.length} Items</p>`
+}
+
+function createItemTemplate(itemsByCategoryMap, key, index) {
+    const itemList = getItemList(itemsByCategoryMap, key);
+    const item = getItem(itemList, index);
+    return `<div>
+    <img src="images/veg_mark.png" alt="Veg Mark Logo" class="veg-mark">
+    <p class="dish-name">${item.displayName}</p>
+    <p> &#8377 ${item.price}</p>
+    </div>
+    <div class="container">
+    <img src=${item.imgUrl} alt="food Image" class=item-image>
+    <button class="add-item-btn">ADD</button>
+    </div>`;
+}
+
+function createCartDescriptionTemplate(cartItems) {
+    const totalItem = cartItems.lineItems.length;
+    const itemName = cartItems.lineItems[0].name;
+    return `<div class = "cart-description">
+    <h3>Cart</h3>
+    <p>${totalItem} Items</p>
+    <br>
+    <p class="dish-name">${itemName}</p>
+    <span>
+        <p>Subtotal</p>
+        <p> &#8377 ${cartItems.subTotal}</p>
+    </span>
+    <p class="charges-description">Extra charges may apply</p>
+    <button class="checkout-btn">Checkout &#8594 </button>
+    </div>`;
+}
+
+function getItemList(itemsByCategoryMap, key) {
+    return itemsByCategoryMap.get(key);
+}
+
+function getItem(itemList, index) {
+    return itemList[index];
+}
+
 const pdpModule = (function() {
-
-    // Templates 
-    function addCategoryInfoTemplate(itemsByCategoryMap, key) {
-        return `<h3>${key}</h3>
-		<p>${itemsByCategoryMap.get(key).length} Items</p>`
-    }
-
-    function createItemTemplate(itemsByCategoryMap, key, index) {
-        return `<div>
-		<img src="images/veg_mark.png" alt="Veg Mark Logo" class="veg-mark">
-		<p class="dish-name">${itemsByCategoryMap.get(key)[index].displayName}</p>
-		<p> &#8377 ${itemsByCategoryMap.get(key)[index].price}</p>
-		</div>
-		<div class="container">
-		<img src=${itemsByCategoryMap.get(key)[index].imgUrl} alt="food Image" class=item-image>
-		<button class="add-item-btn">ADD</button>
-		</div>`;
-    }
-
-    function createCartDescriptionTemplate(cartItems) {
-        return `<div class = "cart-description">
-        <h3>Cart</h3>
-        <p>${cartItems.lineItems.length} Items</p>
-        <br>
-        <p class="dish-name">${cartItems.lineItems[0].name}</p>
-        <span>
-            <p>Subtotal</p>
-            <p> &#8377 ${cartItems.subTotal}</p>
-        </span>
-        <p class="charges-description">Extra charges may apply</p>
-        <button class="checkout-btn">Checkout &#8594 </button>
-        </div>`;
-    }
-
     const categories = fetchCategories();
-
     const menuItems = fetchMenuItems();
-
     const cartItems = fetchCartItems();
+    const itemsByCategoryMap = createItemByCategoryMap(menuItems);
+
+    return {
+        init: display,
+    };
+
+    function display() {
+        const main = document.querySelector("main");
+        addCategoryToMain(main);
+        addMenuListToMain(main);
+        addCartToMain(main);
+    }
 
     function addItemByCategoryInMap(map, key, menuItem) {
         if (!map.has(key)) {
@@ -119,26 +141,23 @@ const pdpModule = (function() {
         return map;
     }
 
-    const itemsByCategoryMap = createItemByCategoryMap(menuItems);
-
-    const main = document.querySelector("main");
-
-    const categoriesContainer = document.querySelector(".categories");
-
-    const categoriesList = document.createElement("ul");
-
-    function addListItemInCategoryList(listElement) {
+    function addListItemInCategoryList(categoriesList, listElement) {
         const categoriesListElement = document.createElement("li");
         categoriesListElement.id = listElement.id;
         categoriesListElement.innerText = listElement.displayName;
         categoriesList.append(categoriesListElement);
     }
-    categories.forEach(listElement => addListItemInCategoryList(listElement));
-    categoriesContainer.append(categoriesList);
 
-    const menuItemsContainer = document.querySelector(".menu-items");
+    function addCategoryToMain(main) {
+        const categoriesContainer = document.querySelector(".categories");
+        const categoriesList = document.createElement("ul");
+        categories.forEach(listElement => addListItemInCategoryList(categoriesList, listElement));
+        categoriesContainer.append(categoriesList);
 
-    function addItemToCartegory(itemsByCategoryMap, key, index) {
+        main.append(categoriesContainer);
+    }
+
+    function addItemToCartegory(menuItemsContainer, itemsByCategoryMap, key, index) {
         const itemContainer = document.createElement("div");
         itemContainer.className = "item-description";
         itemContainer.innerHTML = createItemTemplate(itemsByCategoryMap, key, index);
@@ -146,25 +165,34 @@ const pdpModule = (function() {
         menuItemsContainer.append(itemContainer);
     }
 
-    function addMenuItemsToCategory(itemsByCategoryMap, key) {
-        const categoryInfoContainer = document.createElement("div");
-        categoryInfoContainer.className = "category-info";
-        categoryInfoContainer.innerHTML = addCategoryInfoTemplate(itemsByCategoryMap, key);
-        menuItemsContainer.append(categoryInfoContainer);
+    function addMenuItemsToCategory(menuItemsContainer, itemsByCategoryMap, key) {
+        const categoryInfoContainerElement = document.createElement("div");
+        categoryInfoContainerElement.className = "category-info";
+        categoryInfoContainerElement.innerHTML = createCategoryInfoTemplate(itemsByCategoryMap, key);
+        menuItemsContainer.append(categoryInfoContainerElement);
         for (let i = 0; i < itemsByCategoryMap.get(key).length; i++) {
-            addItemToCartegory(itemsByCategoryMap, key, i);
+            addItemToCartegory(menuItemsContainer, itemsByCategoryMap, key, i);
         }
     }
 
-    function addCategoriesToMenuList(itemsByCategoryMap) {
-        for (const [key, value] of itemsByCategoryMap.entries()) {
-            addMenuItemsToCategory(itemsByCategoryMap, key);
+    function addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap) {
+        for (const [key] of itemsByCategoryMap.entries()) {
+            addMenuItemsToCategory(menuItemsContainer, itemsByCategoryMap, key);
         }
     };
 
-    addCategoriesToMenuList(itemsByCategoryMap);
+    function addMenuListToMain(main) {
+        const menuItemsContainer = document.querySelector(".menu-items");
+        addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap);
+        main.append(menuItemsContainer);
+    }
 
-    const cartContainer = document.querySelector(".cart");
-    cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
-    main.append(categoriesContainer, menuItemsContainer, cartContainer);
+    function addCartToMain(main) {
+        const cartContainer = document.querySelector(".cart");
+        cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
+        main.append(cartContainer);
+    }
+
 })();
+
+pdpModule.init();
