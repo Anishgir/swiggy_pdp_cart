@@ -61,91 +61,167 @@ function fetchCartItems() {
     }
 }
 
+// Templates 
+function createCategoryInfoTemplate(itemsByCategoryMap, key) {
+    const itemList = getItemList(itemsByCategoryMap, key);
+    return `<h3>${key}</h3>
+    <p>${itemList.length} Items</p>`
+}
+
+function createItemTemplate(itemsByCategoryMap, key, index) {
+    const itemList = getItemList(itemsByCategoryMap, key);
+    const item = getItem(itemList, index);
+    return `<div>
+    <img src="images/veg_mark.png" alt="Veg Mark Logo" class="veg-mark">
+    <p class="dish-name">${item.displayName}</p>
+    <p> &#8377 ${item.price}</p>
+    </div>
+    <div class="container">
+    <img src=${item.imgUrl} alt="food Image" class=item-image>
+    <button class="add-item-btn">ADD</button>
+    </div>`;
+}
+
+function createCartDescriptionTemplate(cartItems) {
+    const totalItem = cartItems.lineItems.length;
+    const itemName = cartItems.lineItems[0].name;
+    return `<div class = "cart-description">
+    <h3>Cart</h3>
+    <p>${totalItem} Items</p>
+    <br>
+    <p class="dish-name">${itemName}</p>
+    <span>
+        <p>Subtotal</p>
+        <p> &#8377 ${cartItems.subTotal}</p>
+    </span>
+    <p class="charges-description">Extra charges may apply</p>
+    <button class="checkout-btn">Checkout &#8594 </button>
+    </div>`;
+}
+
+function getItemList(itemsByCategoryMap, key) {
+    return itemsByCategoryMap.get(key);
+}
+
+function getItem(itemList, index) {
+    return itemList[index];
+}
+
 const pdpModule = (function() {
+    return {
+        init: display,
+    };
 
-    // Templates 
-    function addCategoryInfoTemplate(itemsByCategoryMap, key) {
-        return `<h3>${key}</h3>
-		<p>${itemsByCategoryMap.get(key).length} Items</p>`
+    function Model() {
+        this.categories = fetchCategories();
+        this.menuItems = fetchMenuItems();
+        this.cartItems = fetchCartItems();
+        this.itemsByCategoryMap = createItemByCategoryMap(this.categories, this.menuItems);
+        this.bindOnSelectingCategoryChanged = (callback) => {
+            this.onSelectingCategory = callback;
+        }
+        this.onSelectingCategoryChangeMenuList = (categoryName) => {
+            this.list = [{
+                "displayName": categoryName
+            }];
+            this.itemsByCategoryMap = createItemByCategoryMap(this.list, this.menuItems);
+            this.onSelectingCategory(this.list, this.cartItems, this.itemsByCategoryMap);
+        }
     }
 
-    function createItemTemplate(itemsByCategoryMap, key, index) {
-        return `<div>
-		<img src="images/veg_mark.png" alt="Veg Mark Logo" class="veg-mark">
-		<p class="dish-name">${itemsByCategoryMap.get(key)[index].displayName}</p>
-		<p> &#8377 ${itemsByCategoryMap.get(key)[index].price}</p>
-		</div>
-		<div class="container">
-		<img src=${itemsByCategoryMap.get(key)[index].imgUrl} alt="food Image" class=item-image>
-		<button class="add-item-btn">ADD</button>
-		</div>`;
+    function View() {
+        this.createView = (categories, cartItems, itemsByCategoryMap) => {
+            createCategoriesView(categories);
+            createMenuItemsView(itemsByCategoryMap);
+            createCartView(cartItems);
+        }
+        this.bindOnSelectingCategory = (handler) => {
+            document.querySelectorAll(".categories ul li").forEach((listItem) => listItem.addEventListener("click", (e) => {
+                e.target.style.color = '#FFA500';
+                handler(e.target.innerText);
+
+                document.querySelectorAll('.categories ul li').forEach(element => {
+                    if (e.target.id != element.id)
+                        element.style.color = '#291D38';
+                })
+            }));
+        }
     }
 
-    function createCartDescriptionTemplate(cartItems) {
-        return `<div class = "cart-description">
-        <h3>Cart</h3>
-        <p>${cartItems.lineItems.length} Items</p>
-        <br>
-        <p class="dish-name">${cartItems.lineItems[0].name}</p>
-        <span>
-            <p>Subtotal</p>
-            <p> &#8377 ${cartItems.subTotal}</p>
-        </span>
-        <p class="charges-description">Extra charges may apply</p>
-        <button class="checkout-btn">Checkout &#8594 </button>
-        </div>`;
+    function Controller(model, view) {
+        this.model = model;
+        this.view = view;
+        this.view.createView(this.model.categories, this.model.cartItems, this.model.itemsByCategoryMap);
+        this.onSelectingCategory = (categories, cartItems, itemsByCategoryMap) => {
+            this.view.createView(categories, cartItems, itemsByCategoryMap);
+        }
+        this.handelOnSelectingCategory = (categoryName) => {
+            this.model.onSelectingCategoryChangeMenuList(categoryName);
+        }
+        this.view.bindOnSelectingCategory(this.handelOnSelectingCategory);
+        this.model.bindOnSelectingCategoryChanged(this.onSelectingCategory);
     }
 
-    const categories = fetchCategories();
-
-    const menuItems = fetchMenuItems();
-
-    const cartItems = fetchCartItems();
+    function display() {
+        const app = new Controller(new Model(), new View());
+    }
 
     function addItemByCategoryInMap(map, key, menuItem) {
-        if (!map.has(key)) {
-            map.set(key, []);
+        if (map.has(key)) {
+            map.get(key).push(menuItem);
         }
-        map.get(key).push(menuItem);
     }
 
     function addMenuItemsInMap(map, menuItem) {
         menuItem.categories.forEach(key => addItemByCategoryInMap(map, key, menuItem));
     }
 
-    function addEmptyListByKeyInMap(map,key) {
+    function addEmptyListByKeyInMap(map, key) {
         if (!map.has(key.displayName.toLowerCase())) {
             map.set(key.displayName.toLowerCase(), []);
         }
     }
 
-    function createItemByCategoryMap(menuItems) {
+    function createItemByCategoryMap(categories, menuItems) {
         const map = new Map();
-        categories.forEach(key => addEmptyListByKeyInMap(map,key));
+        categories.forEach(key => addEmptyListByKeyInMap(map, key));
         menuItems.forEach(menuItem => addMenuItemsInMap(map, menuItem));
         return map;
     }
 
-    const itemsByCategoryMap = createItemByCategoryMap(menuItems);
+    function isIncluded(listElement) {
+        let flag = false;
+        document.querySelectorAll(".categories ul li").forEach(item => {
+            if (item.innerText === listElement.displayName)
+                flag = true;
+        });
+        return flag;
+    }
 
-    const main = document.querySelector("main");
+    function addListItemInCategoryList(categoriesList, listElement) {
+        if (isIncluded(listElement))
+            return;
 
-    const categoriesContainer = document.querySelector(".categories");
-
-    const categoriesList = document.createElement("ul");
-
-    function addListItemInCategoryList(listElement) {
         const categoriesListElement = document.createElement("li");
         categoriesListElement.id = listElement.id;
         categoriesListElement.innerText = listElement.displayName;
         categoriesList.append(categoriesListElement);
     }
-    categories.forEach(listElement => addListItemInCategoryList(listElement));
-    categoriesContainer.append(categoriesList);
 
-    const menuItemsContainer = document.querySelector(".menu-items");
+    function createCategoriesView(categories) {
+        const main = document.querySelector("main");
+        const categoriesContainer = document.querySelector(".categories");
+        const categoriesList = document.createElement("ul");
+        categories.forEach(listElement => addListItemInCategoryList(categoriesList, listElement));
 
-    function addItemToCartegory(itemsByCategoryMap, key, index) {
+        const numberOfListElement = categoriesList.getElementsByTagName("li").length;
+        if (numberOfListElement) {
+            categoriesContainer.append(categoriesList);
+            main.append(categoriesContainer);
+        }
+    }
+
+    function addItemsToCategoryInMenuList(menuItemsContainer, itemsByCategoryMap, key, index) {
         const itemContainer = document.createElement("div");
         itemContainer.className = "item-description";
         itemContainer.innerHTML = createItemTemplate(itemsByCategoryMap, key, index);
@@ -153,39 +229,37 @@ const pdpModule = (function() {
         menuItemsContainer.append(itemContainer);
     }
 
-    function addMenuItemsToCategory(itemsByCategoryMap, key) {
-        const categoryInfoContainer = document.createElement("div");
-        categoryInfoContainer.className = "category-info";
-        categoryInfoContainer.innerHTML = addCategoryInfoTemplate(itemsByCategoryMap, key);
-        menuItemsContainer.append(categoryInfoContainer);
+    function addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap, key) {
+        const categoryInfoContainerElement = document.createElement("div");
+        categoryInfoContainerElement.className = "category-info";
+        categoryInfoContainerElement.innerHTML = createCategoryInfoTemplate(itemsByCategoryMap, key);
+        menuItemsContainer.append(categoryInfoContainerElement);
         for (let i = 0; i < itemsByCategoryMap.get(key).length; i++) {
-            addItemToCartegory(itemsByCategoryMap, key, i);
+            addItemsToCategoryInMenuList(menuItemsContainer, itemsByCategoryMap, key, i);
         }
     }
 
-    function addCategoriesToMenuList(itemsByCategoryMap) {
-        for (const [key, value] of itemsByCategoryMap.entries()) {
-            addMenuItemsToCategory(itemsByCategoryMap, key);
+    function createMenuList(menuItemsContainer, itemsByCategoryMap) {
+        for (const [key] of itemsByCategoryMap.entries()) {
+            addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap, key);
         }
     };
 
-    addCategoriesToMenuList(itemsByCategoryMap);
-
-    const cartContainer = document.querySelector(".cart");
-    cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
-
-    function selectCategory(itemsByCategoryMap,category) {
+    function createMenuItemsView(itemsByCategoryMap) {
+        const main = document.querySelector("main");
+        const menuItemsContainer = document.querySelector(".menu-items");
         menuItemsContainer.innerHTML = "";
-        let key = category.target.innerText.toLowerCase();
-        addMenuItemsToCategory(itemsByCategoryMap,key);
-        category.target.style.color = '#FFA500';
-        document.querySelectorAll('.categories ul li').forEach(element => {
-            if (category.target.id != element.id)
-                element.style.color = '#291D38';
-        })
-        console.log(key);
+        createMenuList(menuItemsContainer, itemsByCategoryMap);
+        main.append(menuItemsContainer);
     }
-    document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event => selectCategory(itemsByCategoryMap,event)));
 
-    main.append(categoriesContainer, menuItemsContainer, cartContainer);
+    function createCartView(cartItems) {
+        const main = document.querySelector("main");
+        const cartContainer = document.querySelector(".cart");
+        cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
+        main.append(cartContainer);
+    }
+
 })();
+
+pdpModule.init();
