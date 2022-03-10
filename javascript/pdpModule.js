@@ -1,17 +1,21 @@
-function fetchCategories() {
-    return [{
-            "displayName": "Recommended",
-            "id": "recommended"
-        },
-        {
-            "displayName": "Dessert and Beverages",
-            "id": "dessert_beverage"
-        },
-        {
-            "displayName": "Biryani",
-            "id": "biryani"
-        }
-    ];
+async function fetchCategories() {
+    const categories = await fetch('http://localhost:8080/categories');
+    const cat = await categories.json();
+
+    // return [{
+    //         "displayName": "Recommended",
+    //         "id": "recommended"
+    //     },
+    //     {
+    //         "displayName": "Dessert and Beverages",
+    //         "id": "dessert_beverage"
+    //     },
+    //     {
+    //         "displayName": "Biryani",
+    //         "id": "biryani"
+    //     }
+    // ];
+    return cat;
 };
 
 function fetchMenuItems() {
