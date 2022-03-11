@@ -1,74 +1,25 @@
 async function fetchCategories() {
-    const categories = await fetch('http://localhost:8080/categories');
-    const cat = await categories.json();
-
-    // return [{
-    //         "displayName": "Recommended",
-    //         "id": "recommended"
-    //     },
-    //     {
-    //         "displayName": "Dessert and Beverages",
-    //         "id": "dessert_beverage"
-    //     },
-    //     {
-    //         "displayName": "Biryani",
-    //         "id": "biryani"
-    //     }
-    // ];
-    return cat;
+    const response = await fetch('http://localhost:8080/categories');
+    const categories = response.json();
+    return categories;
 };
 
-function fetchMenuItems() {
-    return [{
-            "id": "2121",
-            "displayName": "Kadhai Paneer Biryani",
-            "price": 249,
-            "currency": "INR",
-            "vegetarian": true,
-            "imgUrl": "https://media.istockphoto.com/photos/fish-biryani-with-basmati-rice-indian-food-picture-id488481490?k=20&m=488481490&s=612x612&w=0&h=HYP2KxiC1e2tAtzmfrA7xxs3u8LD1wjSLPUD9bZ48eU=",
-            "categories": ["recommended", "biryani"]
-        },
-        {
-            "id": "2122",
-            "displayName": "Real Biryani",
-            "price": 349,
-            "currency": "INR",
-            "vegetarian": false,
-            "imgUrl": "https://media.istockphoto.com/photos/hyderabadi-biryani-a-popular-chicken-or-mutton-rice-preparation-picture-id466089615?k=20&m=466089615&s=612x612&w=0&h=_Z0Jlombq-VX8Pl8I9mJf_kIuvbzZ7j8ucxvRoLL8BM=",
-            "categories": ["biryani"]
-        },
-        {
-            "id": "2123",
-            "displayName": "Plain Veg Biryani",
-            "price": 149,
-            "currency": "INR",
-            "vegetarian": true,
-            "imgUrl": "https://media.istockphoto.com/photos/chicken-biryani-directly-above-photo-picture-id1169141170?k=20&m=1169141170&s=612x612&w=0&h=EpCF3lQF2GBRaVApNELuE5xFQfv8fyQ_wWC52hmyxeo=",
-            "categories": ["biryani"]
-        }
-    ];
-}
+async function fetchMenuItems() {
+    const response = await fetch('http://localhost:8080/menu-Items');
+    const menuItems = response.json();
+    return menuItems;
+};
 
-function fetchCartItems() {
-    return {
-        "lineItems": [{
-            "id": "1121",
-            "name": "Plain Veg Biryani",
-            "quantity": 2,
-            "price": 149,
-            "currency": "INR"
-        }],
-        "shippingFee": 0,
-        "discount": 0,
-        "tax": 0,
-        "subTotal": 149
-    }
-}
+async function fetchCartItems() {
+    const response = await fetch('http://localhost:8080/cart');
+    const cartItems = response.json();
+    return cartItems;
+};
 
 // Templates 
-function createCategoryInfoTemplate(itemsByCategoryMap, key) {
-    const itemList = getItemList(itemsByCategoryMap, key);
-    return `<h3>${key}</h3>
+function createCategoryInfoTemplate(itemsByCategoryMap, categoryName) {
+    const itemList = getItemList(itemsByCategoryMap, categoryName);
+    return `<h3>${categoryName}</h3>
     <p>${itemList.length} Items</p>`
 }
 
@@ -117,26 +68,24 @@ const pdpModule = (function() {
     };
 
     function Model() {
-        this.categories = fetchCategories();
-        this.menuItems = fetchMenuItems();
-        this.cartItems = fetchCartItems();
-        this.itemsByCategoryMap = createItemByCategoryMap(this.categories, this.menuItems);
-        this.bindOnSelectingCategoryChanged = (callback) => {
-            this.onSelectingCategory = callback;
-        }
-        this.onSelectingCategoryChangeMenuList = (categoryName) => {
-            this.list = [{
-                "displayName": categoryName
-            }];
-            this.itemsByCategoryMap = createItemByCategoryMap(this.list, this.menuItems);
-            this.onSelectingCategory(this.list, this.cartItems, this.itemsByCategoryMap);
-        }
+        fetchCategories().then(data => {
+            this.categories = data;
+        });
+        fetchMenuItems().then(data =>{
+            this.menuItems = data;
+        });
+        fetchCartItems().then(data => {
+            this.cartItems = data;
+        });
+        setTimeout(() => {
+            this.itemsByCategoryMap = createItemByCategoryMap(this.categories, this.menuItems);
+        },2000);
     }
 
     function View() {
         this.createView = (categories, cartItems, itemsByCategoryMap) => {
             createCategoriesView(categories);
-            createMenuItemsView(itemsByCategoryMap);
+            createMenuItemsView(categories,itemsByCategoryMap);
             createCartView(cartItems);
         }
         this.bindOnSelectingCategory = (handler) => {
@@ -155,15 +104,14 @@ const pdpModule = (function() {
     function Controller(model, view) {
         this.model = model;
         this.view = view;
-        this.view.createView(this.model.categories, this.model.cartItems, this.model.itemsByCategoryMap);
-        this.onSelectingCategory = (categories, cartItems, itemsByCategoryMap) => {
-            this.view.createView(categories, cartItems, itemsByCategoryMap);
-        }
+        setTimeout(() => {
+            this.view.createView(this.model.categories, this.model.cartItems, this.model.itemsByCategoryMap);
+            this.view.bindOnSelectingCategory(this.handelOnSelectingCategory);
+        },2000);
         this.handelOnSelectingCategory = (categoryName) => {
-            this.model.onSelectingCategoryChangeMenuList(categoryName);
+            const list = [{displayName: categoryName}];
+            this.view.createView(list,this.model.cartItems,this.model.itemsByCategoryMap);
         }
-        this.view.bindOnSelectingCategory(this.handelOnSelectingCategory);
-        this.model.bindOnSelectingCategoryChanged(this.onSelectingCategory);
     }
 
     function display() {
@@ -225,35 +173,35 @@ const pdpModule = (function() {
         }
     }
 
-    function addItemsToCategoryInMenuList(menuItemsContainer, itemsByCategoryMap, key, index) {
+    function addItemsToCategoryInMenuList(menuItemsContainer, itemsByCategoryMap, categoryName , index) {
         const itemContainer = document.createElement("div");
         itemContainer.className = "item-description";
-        itemContainer.innerHTML = createItemTemplate(itemsByCategoryMap, key, index);
+        itemContainer.innerHTML = createItemTemplate(itemsByCategoryMap, categoryName, index);
 
         menuItemsContainer.append(itemContainer);
     }
 
-    function addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap, key) {
+    function addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap, categoryName){
         const categoryInfoContainerElement = document.createElement("div");
         categoryInfoContainerElement.className = "category-info";
-        categoryInfoContainerElement.innerHTML = createCategoryInfoTemplate(itemsByCategoryMap, key);
+        categoryInfoContainerElement.innerHTML = createCategoryInfoTemplate(itemsByCategoryMap, categoryName);
         menuItemsContainer.append(categoryInfoContainerElement);
-        for (let i = 0; i < itemsByCategoryMap.get(key).length; i++) {
-            addItemsToCategoryInMenuList(menuItemsContainer, itemsByCategoryMap, key, i);
+        for (let i = 0; i < itemsByCategoryMap.get(categoryName).length; i++) {
+            addItemsToCategoryInMenuList(menuItemsContainer, itemsByCategoryMap, categoryName, i);
         }
     }
 
-    function createMenuList(menuItemsContainer, itemsByCategoryMap) {
-        for (const [key] of itemsByCategoryMap.entries()) {
-            addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap, key);
-        }
+    function createMenuList(categories, menuItemsContainer, itemsByCategoryMap) {
+            categories.forEach(category => {
+                addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap, category.displayName.toLowerCase());
+            });       
     };
 
-    function createMenuItemsView(itemsByCategoryMap) {
+    function createMenuItemsView(categories,itemsByCategoryMap) {
         const main = document.querySelector("main");
         const menuItemsContainer = document.querySelector(".menu-items");
         menuItemsContainer.innerHTML = "";
-        createMenuList(menuItemsContainer, itemsByCategoryMap);
+        createMenuList(categories, menuItemsContainer, itemsByCategoryMap);
         main.append(menuItemsContainer);
     }
 
