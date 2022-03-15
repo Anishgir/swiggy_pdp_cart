@@ -125,13 +125,19 @@ const pdpModule = (function() {
     }
 
     function addItemByCategoryInMap(map, key, menuItem) {
-        if (!map.has(key)) {
-            map.set(key, []);
+        if (map.has(key)) {
+            map.get(key).push(menuItem);
         }
-        map.get(key).push(menuItem);
+    }
+
+    function addEmptyListByKeyInMap(map, key) {
+        if (!map.has(key.displayName.toLowerCase())) {
+            map.set(key.displayName.toLowerCase(), []);
+        }
     }
 
     function addMenuItemsInMap(map, menuItem) {
+        categories.forEach(key => addEmptyListByKeyInMap(map, key));
         menuItem.categories.forEach(key => addItemByCategoryInMap(map, key, menuItem));
     }
 
@@ -185,12 +191,26 @@ const pdpModule = (function() {
         const menuItemsContainer = document.querySelector(".menu-items");
         addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap);
         main.append(menuItemsContainer);
+
+        document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event => selectCategory(itemsByCategoryMap, event, menuItemsContainer)));
     }
 
     function addCartToMain(main) {
         const cartContainer = document.querySelector(".cart");
         cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
         main.append(cartContainer);
+    }
+
+    function selectCategory(itemsByCategoryMap, category, menuItemsContainer) {
+        menuItemsContainer.innerHTML = "";
+        let key = category.target.innerText.toLowerCase();
+        console.log(itemsByCategoryMap);
+        addMenuItemsToCategory(menuItemsContainer, itemsByCategoryMap, key);
+        category.target.style.color = '#FFA500';
+        document.querySelectorAll('.categories ul li').forEach(element => {
+            if (category.target.id != element.id)
+                element.style.color = '#291D38';
+        })
     }
 
 })();
