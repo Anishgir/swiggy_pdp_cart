@@ -112,7 +112,6 @@ const pdpModule = (function() {
     const menuItems = fetchMenuItems();
     const cartItems = fetchCartItems();
     const itemsByCategoryMap = createItemByCategoryMap(menuItems);
-    document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event => selectCategory(itemsByCategoryMap,event)));
 
     return {
         init: display,
@@ -126,25 +125,24 @@ const pdpModule = (function() {
     }
 
     function addItemByCategoryInMap(map, key, menuItem) {
-        if (!map.has(key)) {
-            map.set(key, []);
+        if (map.has(key)) {
+            map.get(key).push(menuItem);
         }
-        map.get(key).push(menuItem);
     }
 
-    function addMenuItemsInMap(map, menuItem) {
-        menuItem.categories.forEach(key => addItemByCategoryInMap(map, key, menuItem));
-    }
-
-    function addEmptyListByKeyInMap(map,key) {
+    function addEmptyListByKeyInMap(map, key) {
         if (!map.has(key.displayName.toLowerCase())) {
             map.set(key.displayName.toLowerCase(), []);
         }
     }
 
+    function addMenuItemsInMap(map, menuItem) {
+        categories.forEach(key => addEmptyListByKeyInMap(map, key));
+        menuItem.categories.forEach(key => addItemByCategoryInMap(map, key, menuItem));
+    }
+
     function createItemByCategoryMap(menuItems) {
         const map = new Map();
-        categories.forEach(key => addEmptyListByKeyInMap(map,key));
         menuItems.forEach(menuItem => addMenuItemsInMap(map, menuItem));
         return map;
     }
@@ -193,6 +191,8 @@ const pdpModule = (function() {
         const menuItemsContainer = document.querySelector(".menu-items");
         addCategoriesToMenuList(menuItemsContainer, itemsByCategoryMap);
         main.append(menuItemsContainer);
+
+        document.querySelectorAll('.categories ul li').forEach(element => element.addEventListener('click', event => selectCategory(itemsByCategoryMap, event, menuItemsContainer)));
     }
 
     function addCartToMain(main) {
@@ -200,17 +200,19 @@ const pdpModule = (function() {
         cartContainer.innerHTML = createCartDescriptionTemplate(cartItems);
         main.append(cartContainer);
     }
-    
-    function selectCategory(itemsByCategoryMap,category) {
+
+    function selectCategory(itemsByCategoryMap, category, menuItemsContainer) {
         menuItemsContainer.innerHTML = "";
         let key = category.target.innerText.toLowerCase();
-        addMenuItemsToCategory(itemsByCategoryMap,key);
+        console.log(itemsByCategoryMap);
+        addMenuItemsToCategory(menuItemsContainer, itemsByCategoryMap, key);
         category.target.style.color = '#FFA500';
         document.querySelectorAll('.categories ul li').forEach(element => {
             if (category.target.id != element.id)
                 element.style.color = '#291D38';
         })
-        console.log(key);
     }
 
 })();
+
+pdpModule.init();
