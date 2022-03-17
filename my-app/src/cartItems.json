@@ -1,0 +1,13 @@
+{
+    "lineItems": [{
+        "id": "1121",
+        "name": "Plain Veg Biryani",
+        "quantity": 2,
+        "price": 149,
+        "currency": "INR"
+    }],
+    "shippingFee": 0,
+    "discount": 0,
+    "tax": 0,
+    "subTotal": 149
+}
