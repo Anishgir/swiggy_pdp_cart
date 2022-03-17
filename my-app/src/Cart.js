@@ -11,7 +11,7 @@ export default function Cart() {
           <p className = "dish-name"> {cartData.lineItems[0].name}</p>
           <span>
               <p>Subtotal</p>
-              <p>{cartData.subTotal}</p>
+              <p> {'\u20B9'} {cartData.subTotal}</p>
           </span>
           <p className = "charges-description">Extra charges may apply</p>
           <button className='checkout-btn'>Checkout</button>

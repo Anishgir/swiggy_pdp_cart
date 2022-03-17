@@ -7,7 +7,7 @@ export default function CreateItemDescription(props) {
       <div>
         <img src={veg_mark} alt="Veg Mark Logo" className='veg-mark'/>
         <p className='dish-name'>{props.categoryItem.displayName}</p>
-        <p>{props.categoryItem.price}</p>
+        <p>{'\u20B9'}{props.categoryItem.price}</p>
       </div>
       <div className='container'>
           <img src = {props.categoryItem.imgUrl} alt="food Item" className='item-image' />
