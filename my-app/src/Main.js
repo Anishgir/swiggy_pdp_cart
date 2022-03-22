@@ -1,13 +1,16 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Categories from './Categories.js';
 import MenuItems from './MenuItems.js';
 import Cart from './Cart.js';
+import catgoriesList from './categories.json';
 
 export default function Main() {
+  const [categories, setCategories] = useState(catgoriesList);
+
   return (
     <main>
-      <Categories/>
-      <MenuItems />
+      <Categories setCategories = {setCategories}/>
+      <MenuItems categories = {categories}/>
       <Cart/>
     </main>
   );
