@@ -5,32 +5,31 @@ a{
     text-decoration: none;
 }
 header{
-    padding: 0.5rem 0;
+    padding: 0.5rem 13.5rem;
 }
 header div{
     display: flex;
     flex-flow: row nowrap;
     justify-content: space-between;
     align-items: center;
-    padding: 0rem 6.6rem;
 }
 header div ul{
     display: flex;
 }
 header div a{
     font-weight: 700;
-    color: grey;
+    color: #696969;
     margin-right: 1.4rem;
 }
 header div a:hover{
-    color: orange;
+    color: #FFA500;
 }
 .swiggy-logo{
-    max-width: 50px;
+    max-width: 3.1rem;
 }
 .nav-bar{
     padding-left: 11.6rem;
-    background-color:tan;
+    background-color: #F1EBEB;
 }
 .nav-bar nav{
     display: flex;
@@ -42,19 +41,19 @@ header div a:hover{
     margin-right: 0.5rem;
 }
 .nav-bar nav ul li a{
-    color:grey;
-    font-size: 13px;
+    color:#696969;
+    font-size: 0.8rem;
     font-weight: 700;
 }
 .nav-bar nav ul li span{
-    color:grey;
-    font-size: 13px;
+    color:#696969;
+    font-size: 0.8rem;
 }
 .nav-bar nav ul li a:hover{
-    color: black;
+    color: #000000;
 }
 .banner{
-    background-color: rgb(41, 29, 56);
+    background-color: #291D38;
     display: flex;
     align-items: center;
     padding-top: 1rem;
@@ -62,49 +61,54 @@ header div a:hover{
     padding-left: 14rem;
 }
 .banner img{
-    max-width: 300px;
+    max-width: 18.75rem;
 }
 .banner h1{
-    color: white;
-    font-size: 35px;
+    color: #FFFFFF;
+    font-size: 2.1rem;
     margin-left: 3rem;
 }
 main{
     display: flex;
     flex-flow: row nowrap;
-    min-height: calc(100vh - 440px);
+    min-height: calc(100vh - 27.5rem);
 }
 .categories{
-    border-right: 0.5px solid grey;
+    border-right: 0.03rem solid #696969;
     overflow-y: auto;
-}
-.categories ul{
-    list-style-type: none;
+    padding-right: 3rem;
 }
 .category-highlight{
-    color: orange;
+    color: #FFA500;
+}
+.categories ul{
+    text-align: right;
 }
 .categories ul li{
-    margin-bottom: 0.5rem;
-    padding-left: 11rem;
+    margin-bottom: 0.3rem;
+    cursor: pointer;
 }
 .menu-items{
-    border-right: 0.5px solid grey;
+    border-right: 0.03rem solid #696969;
     padding-left: 4rem;
+    padding-right: 4rem;
 }
-.menu-items .category-info{
+.category-info{
     margin-bottom: 3rem;
 }
-.menu-items .item-description{
+.item-description{
+    display: flex;
+    justify-content: space-between;
     margin-top: 3rem;
     padding-bottom: 3rem;
-    border-bottom: 0.5px solid grey;
+    border-bottom: 0.03rem solid #696969;
+    position: relative;
 }
-.item-description img{
-    max-width: 15px;
+.item-description .veg-mark{
+    max-width: 0.94rem;
     margin-bottom: 0.5rem;
 }
-.item-description .dishname{
+.item-description .dish-name{
     font-weight: 700;
 }
 .menu-items div h3{
@@ -112,18 +116,36 @@ main{
 }
 .menu-items div p{
     margin-top: 0rem;
-    color: grey;
+    color: #696969;
     font-weight: 500;
+}
+.item-image{
+    max-width: 9.4rem;
+    border-radius: 0.6rem;
+}
+.add-item-btn{
+    width: 4.4rem;
+    padding: 0.3rem 0;
+    position: absolute;
+    top: 5.1rem;
+    right: 2.5rem;
+    font-weight: 700;
+    color: #60b246;
+    background-color: #FFFFFF;
+    border: 0.02rem solid #60b246;
 }
 .cart{
     padding-left: 3rem;
+}
+.cart-description{
+    padding-right: 15rem;
 }
 .cart div h3{
     margin-bottom: 0rem;
 }
 .cart div p{
     margin-top: 0rem;
-    color: grey;
+    color: #696969;
     font-weight: 500;
 }
 .cart div span{
@@ -140,37 +162,34 @@ main{
 }
 .charges-description{
     margin-top: 0;
-    font-size: 13px;
+    font-size: 0.8rem;
 }
 .checkout-btn{
     width: 100%;
-    height: 2.7rem;
-    background-color: rgb(16, 201, 16);
-    border-color: rgb(16, 201, 16);
+    padding: 0.6rem 0;
+    background-color: #60b246;
+    border-color: #60b246;
     cursor: pointer;
 }
 .footer{
     display: flex;
     flex-flow: nowrap;
-    background-color: black;
+    background-color:#000000;
     justify-content: space-evenly;
     align-items: center;
 }
 .footer p{
-    color: white;
-    font-size: 20px;
+    color: #FFFFFF;
+    font-size: 1.25rem;
 }
 .footer img{
-    max-width: 90px;
-}
-.footer ul{
-    list-style-type: none;
+    max-width: 5.6rem;
 }
 .footer ul li{
     display: inline-block;
 }
 .footer ul img{
-    max-width: 30px;
+    max-width: 1.9rem;
     margin-right: 1.5rem;
 }
 .col-2{
