@@ -89,15 +89,17 @@ const pdpModule = (function() {
             createCartView(cartItems);
         }
         this.bindOnSelectingCategory = (handler) => {
-            document.querySelectorAll(".categories ul li").forEach((listItem) => listItem.addEventListener("click", (e) => {
-                e.target.style.color = '#FFA500';
-                handler(e.target.innerText);
+            document.querySelector(".categories ul").addEventListener("click", (e) => {
+                if(e.target.id){
+                    e.target.style.color = '#FFA500';
+                    handler(e.target.innerText);
 
-                document.querySelectorAll('.categories ul li').forEach(element => {
-                    if (e.target.id != element.id)
-                        element.style.color = '#291D38';
-                })
-            }));
+                    document.querySelectorAll('.categories ul li').forEach(element => {
+                        if (e.target.id != element.id)
+                            element.style.color = '#291D38';
+                    })
+                }
+            });
         }
     }
 
