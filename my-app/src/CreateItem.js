@@ -17,8 +17,8 @@ export default function CreateItem(props) {
   }
 
   return (
-    <li key = {props.id} onClick = {() => onSelectingCategory([{displayName:props.categoryName,id:props.id}])} style = {{color:props.color}}>
-      {props.categoryName}
+    <li key = {props.item.id} onClick = {() => onSelectingCategory([{displayName:props.item.displayName,id:props.item.id}])} style = {{color:props.item.color}}>
+      {props.item.displayName}
     </li>
   );
 }
