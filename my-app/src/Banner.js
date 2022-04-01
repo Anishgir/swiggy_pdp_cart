@@ -5,7 +5,7 @@ export default function Banner(props) {
   return (
      <section className="banner">
          <img src= {bannerImage} alt = "Food" />
-         <h1>{props.heading}</h1>
+         <h1>{props.restorantName}</h1>
       </section>
   );
 }
