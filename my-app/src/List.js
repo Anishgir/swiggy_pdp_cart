@@ -8,10 +8,10 @@ export default function List() {
   return (
     <ul>
        <Link to='offer'>
-        <li><a href="/">Offers</a></li>
+        <li>Offers</li>
       </Link>
       <Link to='user'>
-        <li><a href="/"><img src = {userIcon} alt = "user Icon logo" className='user-icon'/>{userInfo.firstName + " "+ userInfo.lastName}</a></li>
+        <li><img src = {userIcon} alt = "user Icon logo" className='user-icon'/>{userInfo.firstName + " "+ userInfo.lastName}</li>
       </Link>
     </ul>
   );

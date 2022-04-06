@@ -36,7 +36,7 @@ export default function CreateCategory(props) {
         <div>
           <CreateCategoryInfo categoryName = {props.categoryName} numberOfItems = {categoryItemsList.length}/>
           {categoryItemsList.map(categoryItem => {
-              return <CreateItemDescription categoryItem = {categoryItem}/>
+              return <CreateItemDescription key = {categoryItem.id} categoryItem = {categoryItem}/>
           })}
         </div>
       );

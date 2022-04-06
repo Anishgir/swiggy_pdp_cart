@@ -7,7 +7,7 @@ export default function MenuItems() {
     return (
     <div className='menu-items col-4'>
         {categories.map(item => {
-            return <CreateCategory categoryName = {item.displayName}/>
+            return <CreateCategory key = {item.id} categoryName = {item.displayName}/>
         })}
     </div>
   );

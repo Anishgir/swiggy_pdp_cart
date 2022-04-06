@@ -7,7 +7,7 @@ export default function CreateItemList(props) {
   return (
     <ul>
       {categoriesList.map(item => {
-          return <CreateItem item = {item} setCategories = {props.setCategories} categories = {categoriesList} setCategoriesColor = {setCategoriesColor}/>  
+          return <CreateItem key = {item.id} item = {item} setCategories = {props.setCategories} categories = {categoriesList} setCategoriesColor = {setCategoriesColor}/>  
       })}
     </ul>
   );
