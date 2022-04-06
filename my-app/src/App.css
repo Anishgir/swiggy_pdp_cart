@@ -40,6 +40,40 @@ header div a{
 header div a:hover{
   color: #FFA500;
 }
+.user-icon{
+  max-width: 1.4rem;
+}
+.user-profile{
+  background-color: aquamarine;
+  padding-left: 14rem;
+}
+.user-name{
+  font-weight: 700;
+  font-size: 1.5rem;
+  color: white;
+  margin-bottom: 0;
+}
+.user-address{
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  margin-top: 0;
+}
+.offers{
+  background-color: aquamarine;
+  padding-left: 14rem;
+  display: flex;
+}
+.offers p{
+  font-weight: 700;
+  font-size: 1rem;
+  color: white;
+  margin-bottom: 0;
+}
+.offers img{
+  margin-top: 0;
+  max-width: 15rem;
+}
 .swiggy-logo{
   max-width: 3.1rem;
 }
