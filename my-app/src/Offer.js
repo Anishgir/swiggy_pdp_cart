@@ -1,21 +1,9 @@
-import React,{useState,useEffect,useContext} from 'react';
+import React,{useContext} from 'react';
 import { MenuItemsContext } from './MenuItemsContext.js';
+import { connect } from 'react-redux';
 
-function Offer() {
+function Offer(props) {
   const [menuItems] = useContext(MenuItemsContext);
-  const [offer,setOffer] = useState([]);
-  useEffect(() => {
-    const fetchOffer = async () => {
-        try {
-            const response = await fetch('http://localhost:8080/promotion');
-            const data = await response.json();
-            setOffer(data);
-        } catch (error) {
-            console.log("error", error);
-        }
-    };
-    fetchOffer();
-  },[]) ;
   if(menuItems[0]){
     return (
       <div className='offers'>
@@ -24,7 +12,7 @@ function Offer() {
             <div className='col-4' key = {item.id}>
             <p>{item.displayName}</p>
             <img src={item.imgUrl} alt="" />
-            <p>{`${'\u20B9'} ${item.price} ${offer.offerText}`}</p>
+            <p>{`${'\u20B9'} ${item.price}`} ${props.offer.offerText}</p>
             </div>
           )
         })}
@@ -36,4 +24,10 @@ function Offer() {
   }
 }
 
-export default Offer;
+const mapStateToProps = state => {
+  return{
+    offer: state.offerReducer.offer
+  }
+}
+
+export default connect(mapStateToProps)(Offer);

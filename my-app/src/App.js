@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState,useEffect} from 'react';
 import { BrowserRouter, Routes, Route} from "react-router-dom";
 import Header from './Header.js';
 import Navbar from './Navbar.js';
@@ -9,19 +9,26 @@ import HomePage from './HomePage.js';
 import User from './User.js'
 import Offer from './Offer.js';
 import { MenuItemsProvider } from './MenuItemsContext.js';
-import { UserInfoProvider } from './UserInfoContext.js';
 import { CategoriesProvider } from './CategoriesContext.js';
-
-
+import { fetchUserInfo } from './reduxPackage/actions/userInfoActions.js';
+import fetchOffer from './reduxPackage/actions/offerAction.js';
+import {useDispatch} from 'react-redux';
 import './App.css';
 
 function App() {
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(fetchUserInfo());
+    dispatch(fetchOffer());
+  }, []);
+
 
   const [restorantName, setRestorantName] = useState("Punjabi Dhaba");
   return (
     <BrowserRouter>
        <MenuItemsProvider>
-       <UserInfoProvider>
        <CategoriesProvider>
           <Header />
           <Navbar />
@@ -33,7 +40,6 @@ function App() {
           </Routes>
           <Footer />
       </CategoriesProvider>
-      </UserInfoProvider>
       </MenuItemsProvider>
     </BrowserRouter>
   );

@@ -1,13 +1,18 @@
-import React,{useContext} from 'react';
-import { UserInfoContext } from './UserInfoContext';
-function User() {
-    const [userInfo] = useContext(UserInfoContext);
+import React from 'react';
+import { connect } from 'react-redux';
+function User(props) {
     return (
         <div className='user-profile'>
-            <p className='user-name'>{userInfo.firstName + " "+ userInfo.lastName}</p>
-            <p className='user-address'>Address: {userInfo.primaryAddress.city+", "+userInfo.primaryAddress.state+", PIN "+userInfo.primaryAddress.zipCode}</p>
+            <p className='user-name'>{props.userInfo.firstName + " "+ props.userInfo.lastName}</p>
+            <p className='user-address'>Address: {props.userInfo.primaryAddress.city+", "+props.userInfo.primaryAddress.state+", PIN "+props.userInfo.primaryAddress.zipCode}</p>
         </div>
     );
 }
 
-export default User;
+const mapStateToProps = state =>{
+    return{
+      userInfo: state.userInfoReducer.userInfo
+    }
+}
+
+export default connect(mapStateToProps)(User);
