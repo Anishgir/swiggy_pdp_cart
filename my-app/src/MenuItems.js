@@ -1,12 +1,13 @@
 import React from 'react';
-import CreateCategory from './CreateCategory.js';
+import Category from './Category.js';
 
 export default function MenuItems(props) {
     const categories = props.categories;
     return (
     <div className='menu-items col-4'>
         {categories.map(item => {
-            return <CreateCategory categoryName = {item.displayName}/>
+            const {id,displayName} = item;
+            return <Category key = {id} categoryName = {displayName}/>
         })}
     </div>
   );

@@ -10,7 +10,7 @@ export default function CreateItemDescription(props) {
         <p>{'\u20B9'}{props.categoryItem.price}</p>
       </div>
       <div className='container'>
-          <img src = {props.categoryItem.imgUrl} alt="food Item" className='item-image' />
+          <img src = {props.categoryItem.imgUrl} alt = {props.alt} className='item-image' />
           <button className='add-item-btn'>ADD</button>
       </div>
     </div>
