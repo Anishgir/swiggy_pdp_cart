@@ -8,13 +8,13 @@ import './style/styles.css';
 
 function App() {
   return (
-    <>
+    <div>
       <Header />
       <Navbar />
       <Banner heading = {"Punjabi Momos"} alt = {"Food Banner"}/>
       <Main />
       <Footer alt = {'Swiggy Logo'}/>
-    </>
+    </div>
   );
 }
 

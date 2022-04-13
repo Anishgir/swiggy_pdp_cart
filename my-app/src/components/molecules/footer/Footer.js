@@ -1,6 +1,7 @@
 import React from 'react';
 import swiggyImg from '../../../images/swiggy.png';
 import CompaniesLogoList from './CompaniesLogoList.js';
+import './styles.css';
 
 export default function Footer(props) {
   return (
