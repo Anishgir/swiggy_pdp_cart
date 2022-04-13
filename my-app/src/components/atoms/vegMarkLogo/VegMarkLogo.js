@@ -2,10 +2,10 @@ import React from 'react';
 import veg_mark from '../../../images/veg_mark.png';
 import './styles.css';
 
-function VegMarkLogo() {
+function VegMarkLogo(props) {
   return (
     <React.Fragment>
-      <img src={veg_mark} alt="Veg Mark Logo" className='veg-mark'/>
+      <img src={veg_mark} alt={props.alt} className='veg-mark'/>
     </React.Fragment>
   );
 }

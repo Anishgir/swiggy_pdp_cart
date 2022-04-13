@@ -27,7 +27,7 @@ function createItemByCategoryMap(categories, menuItems) {
     return map;
 }
 
-export default function CreateCategory(props) {
+function Category(props) {
   const itemsByCategoryMap = createItemByCategoryMap(categories,menuItems);
   const categoryItemsList = itemsByCategoryMap.get(props.categoryName.toLowerCase());
   return (
@@ -39,3 +39,5 @@ export default function CreateCategory(props) {
     </div>
   );
 }
+
+export default Category;

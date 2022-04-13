@@ -3,16 +3,17 @@ import AddItemButton from '../../atoms/addItem/AddItemButton';
 import VegMarkLogo from '../../atoms/vegMarkLogo/VegMarkLogo';
 import MenuItemImage from '../../atoms/menuItemImage/MenuItemImage';
 
-export default function CreateItemDescription(props) {
+export default function ItemDescription(props) {
+  const {categoryItem:{displayName,price,imgUrl}} = props;
   return (
     <div className='item-description'>
       <div>
-        <VegMarkLogo/>
-        <p className='dish-name'>{props.categoryItem.displayName}</p>
-        <p>{'\u20B9'}{props.categoryItem.price}</p>
+        <VegMarkLogo alt = {'Veg Mark Logo'}/>
+        <p className='dish-name'>{displayName}</p>
+        <p>{'\u20B9'}{price}</p>
       </div>
       <div className='container'>
-          <MenuItemImage URL = {props.categoryItem.imgUrl} alt = {"Food Image"}/>
+          <MenuItemImage URL = {imgUrl} alt = {"Food Image"}/>
           <AddItemButton/>
       </div>
     </div>

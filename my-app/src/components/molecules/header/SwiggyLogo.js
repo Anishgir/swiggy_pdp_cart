@@ -1,7 +1,7 @@
 import React from 'react';
 import AppLogo from '../../atoms/appLogo/AppLogo';
 
-export default function SwiggyLogo() {
+function SwiggyLogo() {
   return (
     <div>
       <AppLogo/>
@@ -10,3 +10,5 @@ export default function SwiggyLogo() {
     </div>
   );
 }
+
+export default SwiggyLogo;

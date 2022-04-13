@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function CreateCategoryInfo(props) {
+export default function CategoryInfo(props) {
   const {categoryName,numberOfItems} = props;
   return (
     <div className='category-info'>
