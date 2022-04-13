@@ -1,6 +1,6 @@
 import React from 'react';
-import bannerImage from './images/banner_image.jpeg';
-
+import bannerImage from '../../../images/banner_image.jpeg';
+import './styles.css'
 export default function Banner(props) {
   const {heading,alt} = props;
   return (

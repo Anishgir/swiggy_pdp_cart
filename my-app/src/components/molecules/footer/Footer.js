@@ -1,5 +1,5 @@
 import React from 'react';
-import swiggyImg from './images/swiggy.png';
+import swiggyImg from '../../../images/swiggy.png';
 import CompaniesLogoList from './CompaniesLogoList.js';
 
 export default function Footer(props) {

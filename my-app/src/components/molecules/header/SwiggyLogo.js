@@ -1,10 +1,10 @@
 import React from 'react';
-import swiggylogo from './images/swiggylogo.png';
+import AppLogo from '../../atoms/appLogo/AppLogo';
 
 export default function SwiggyLogo() {
   return (
     <div>
-      <a href="/"> <img src={swiggylogo} alt = "Swiggy Logo" className = "swiggy-logo" /> </a>
+      <AppLogo/>
       <a href="/">Set location</a> 
       <a href="/">Click to Choose Location</a>
     </div>

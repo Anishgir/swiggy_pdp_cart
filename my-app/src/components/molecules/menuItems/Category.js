@@ -1,8 +1,8 @@
 import React from 'react';
 import CreateCategoryInfo from './CategoryInfo.js';
 import CreateItemDescription from './ItemDescription.js';
-import categories from './mocks/categories.json';
-import menuItems from './mocks/menuItems.json';
+import categories from '../../../mocks/categories.json';
+import menuItems from '../../../mocks/menuItems.json';
 
 function addItemByCategoryInMap(map, key, menuItem) {
   if (map.has(key)) {

@@ -1,0 +1,30 @@
+.cart{
+    padding-left: 3rem;
+  }
+  .cart-description{
+    padding-right: 15rem;
+  }
+  .cart div h3{
+    margin-bottom: 0rem;
+  }
+  .cart div p{
+    margin-top: 0rem;
+    color: #696969;
+    font-weight: 500;
+  }
+  .cart div span{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    margin-bottom: 0;
+  }
+  .cart div span p{
+    margin: 0;
+    padding: 0;
+  }
+  .charges-description{
+    margin-top: 0;
+    font-size: 0.8rem;
+  }

@@ -1,5 +1,6 @@
 import React from 'react';
 import CreateItemList from './ItemList.js';
+import './styles.css';
 
 export default function Categories(props) {
   return (

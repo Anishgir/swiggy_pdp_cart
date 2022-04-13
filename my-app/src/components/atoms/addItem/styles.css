@@ -1,0 +1,11 @@
+.add-item-btn{
+    width: 4.4rem;
+    padding: 0.3rem 0;
+    position: absolute;
+    top: 5.1rem;
+    right: 2.5rem;
+    font-weight: 700;
+    color: #60b246;
+    background-color: #FFFFFF;
+    border: 0.02rem solid #60b246;
+}

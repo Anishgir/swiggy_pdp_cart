@@ -1,0 +1,42 @@
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}
+.footer{
+  display: flex;
+  flex-flow: nowrap;
+  background-color:#000000;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.footer p{
+  color: #FFFFFF;
+  font-size: 1.25rem;
+}
+.footer img{
+  max-width: 5.6rem;
+}
+.footer ul li{
+  display: inline-block;
+}
+.footer ul img{
+  max-width: 1.9rem;
+  margin-right: 1.5rem;
+}
+.col-2{
+  flex-basis: 16%;
+}
+.col-3{
+  flex-basis: 25%;
+}
+.col-4{
+  flex-basis: 33%;
+}
+.col-5{
+  flex-basis: 42%;
+}
+.col-6{
+  flex-basis: 50%;
+}

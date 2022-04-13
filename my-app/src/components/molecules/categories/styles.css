@@ -1,0 +1,15 @@
+.categories{
+    border-right: 0.03rem solid #696969;
+    overflow-y: auto;
+    padding-right: 3rem;
+}
+.category-highlight{
+color: #FFA500;
+}
+.categories ul{
+text-align: right;
+}
+.categories ul li{
+margin-bottom: 0.3rem;
+cursor: pointer;
+}

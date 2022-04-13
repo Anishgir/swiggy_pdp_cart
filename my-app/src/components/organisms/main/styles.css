@@ -1,0 +1,5 @@
+main{
+    display: flex;
+    flex-flow: row nowrap;
+    min-height: calc(100vh - 27.5rem);
+}

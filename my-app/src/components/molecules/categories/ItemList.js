@@ -1,6 +1,6 @@
 import React,{useState} from 'react';
 import Item from './Item.js'
-import categories from './mocks/categories.json'
+import categories from '../../../mocks/categories.json'
 
 export default function CreateItemList(props) {
   categories.map(category =>  category['color'] = 'black');

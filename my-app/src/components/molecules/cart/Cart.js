@@ -1,7 +1,9 @@
 import React from 'react';
-import cartData from './mocks/cartItems.json'
+import cartData from '../../../mocks/cartItems.json'
+import CheckoutButton from '../../atoms/checkoutButton/CheckoutButton';
+import './styles.css';
 
-export default function Cart() {
+function Cart() {
   const {lineItems,subTotal} = cartData;
   return (
     <div className='cart col-4'>
@@ -15,8 +17,10 @@ export default function Cart() {
               <p> {'\u20B9'} {subTotal}</p>
           </span>
           <p className = "charges-description">Extra charges may apply</p>
-          <button className='checkout-btn'>Checkout</button>
+          <CheckoutButton/>
       </div>
     </div>
   );
 }
+
+export default Cart;

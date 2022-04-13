@@ -1,8 +1,8 @@
 import React from 'react';
-import facebookImg from './images/facebook.png';
-import instagramImg from './images/instagram.png';
-import pinterestImg from './images/pinterest.png';
-import twitterImg from './images/twitter.png';
+import facebookImg from '../../../images/facebook.png';
+import instagramImg from '../../../images/instagram.png';
+import pinterestImg from '../../../images/pinterest.png';
+import twitterImg from '../../../images/twitter.png';
 
 export default function CompaniesLogoList(props) {
   return (

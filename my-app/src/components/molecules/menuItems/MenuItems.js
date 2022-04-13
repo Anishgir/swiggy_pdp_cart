@@ -1,5 +1,6 @@
 import React from 'react';
 import Category from './Category.js';
+import './styles.css';
 
 export default function MenuItems(props) {
     const categories = props.categories;

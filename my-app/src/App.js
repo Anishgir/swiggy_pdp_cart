@@ -1,10 +1,10 @@
 import React from 'react';
-import Header from './Header.js';
-import Navbar from './Navbar.js';
-import Banner from './Banner.js';
-import Main from './Main.js';
-import Footer from './Footer.js';
-import './App.css';
+import Header from './components/molecules/header/Header.js';
+import Navbar from './components/molecules/navBar/Navbar.js';
+import Banner from './components/molecules/banner/Banner.js';
+import Main from './components/organisms/main/Main.js';
+import Footer from './components/molecules/footer/Footer.js';
+import './style/styles.css';
 
 function App() {
   return (
@@ -13,7 +13,7 @@ function App() {
       <Navbar />
       <Banner heading = {"Punjabi Momos"} alt = {"Food Banner"}/>
       <Main />
-      <Footer />
+      <Footer alt = {'Swiggy Logo'}/>
     </>
   );
 }
