@@ -1,9 +1,9 @@
 import React from 'react';
 import './styles.css';
 
-function AddItemButton() {
+function AddItemButton(props) {
   return (
-    <button className='add-item-btn'>ADD</button>
+    <button className={props.className}>{props.buttonName}</button>
   );
 }
 

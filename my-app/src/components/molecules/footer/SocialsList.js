@@ -6,11 +6,11 @@ import twitterImg from '../../../images/twitter.png';
 import SocialListItem from './SocialListItem';
 
 export default function SocialsList(props) {
-  const socialList = [{URL:facebookImg,alt:props.facebookLogo},{URL:instagramImg,alt:props.instagramLogo},{URL:twitterImg,alt:props.twitterLogo},{URL:pinterestImg,alt:props.pinterestLogo}];
+  const socialList = [{URL:facebookImg,alt:props.facebookLogo,id:'1'},{URL:instagramImg,alt:props.instagramLogo,id:'2'},{URL:twitterImg,alt:props.twitterLogo,id:'3'},{URL:pinterestImg,alt:props.pinterestLogo,id:'4'}];
   return (
     <ul>
         {socialList.map((item) => {
-          return <SocialListItem URL = {item.URL} alt = {item.alt}/>
+          return <SocialListItem key = {item.id}URL = {item.URL} alt = {item.alt} id = {item.id}/>
         })}
     </ul>
   );

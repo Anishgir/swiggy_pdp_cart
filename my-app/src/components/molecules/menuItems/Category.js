@@ -1,8 +1,6 @@
 import React from 'react';
 import CategoryInfo from './CategoryInfo.js';
 import ItemDescription from './ItemDescription.js';
-import categories from '../../../mocks/categories.json';
-import menuItems from '../../../mocks/menuItems.json';
 
 function addItemByCategoryInMap(map, key, menuItem) {
   if (map.has(key)) {
@@ -28,6 +26,7 @@ function createItemByCategoryMap(categories, menuItems) {
 }
 
 function Category(props) {
+  const {categories,menuItems} = props
   const itemsByCategoryMap = createItemByCategoryMap(categories,menuItems);
   const categoryItemsList = itemsByCategoryMap.get(props.categoryName.toLowerCase());
   return (

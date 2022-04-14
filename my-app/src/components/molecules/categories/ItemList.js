@@ -1,15 +1,24 @@
-import React,{useState} from 'react';
+import React from 'react';
 import Item from './Item.js'
-import categories from '../../../mocks/categories.json'
 
-export default function CreateItemList(props) {
-  categories.map(category =>  category['color'] = 'black');
-  const [categoriesList, setCategoriesColor] = useState(categories);
-  return (
-    <ul>
-      {categoriesList.map(item => {
-          return <Item key = {item.id} item = {item} setCategories = {props.setCategories} categories = {categoriesList} setCategoriesColor = {setCategoriesColor}/>  
-      })}
-    </ul>
-  );
+export default function ItemList(props) {
+  const {categories,setCategories,highLightedCategory,setHighLightedCategory,loadingCategories} = props;
+  if(!loadingCategories){
+    // const tempCategories = categories;
+    // tempCategories.map((category) => {
+    //   if(category.id === highLightedCategory[0].id){
+    //     return category['color'] = 'orange';
+    //   }
+    //   return category['color'] = 'black';
+    // })
+    // setCategories(tempCategories);
+    return (
+      <ul>
+        {categories.map(item => {
+            return <Item key = {item.id} item = {item} categories = {categories} setCategoires = {setCategories} setHighLightedCategory = {setHighLightedCategory}/>  
+        })}
+      </ul>
+    );
+  }
+  return null;
 }
