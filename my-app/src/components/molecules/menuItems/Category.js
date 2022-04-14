@@ -1,6 +1,6 @@
 import React from 'react';
-import CreateCategoryInfo from './CategoryInfo.js';
-import CreateItemDescription from './ItemDescription.js';
+import CategoryInfo from './CategoryInfo.js';
+import ItemDescription from './ItemDescription.js';
 import categories from '../../../mocks/categories.json';
 import menuItems from '../../../mocks/menuItems.json';
 
@@ -32,9 +32,9 @@ function Category(props) {
   const categoryItemsList = itemsByCategoryMap.get(props.categoryName.toLowerCase());
   return (
     <div>
-      <CreateCategoryInfo categoryName = {props.categoryName} numberOfItems = {categoryItemsList.length}/>
+      <CategoryInfo categoryName = {props.categoryName} numberOfItems = {categoryItemsList.length}/>
       {categoryItemsList.map(categoryItem => {
-          return <CreateItemDescription key = {categoryItem.id} categoryItem = {categoryItem} alt = {'Food'}/>
+          return <ItemDescription key = {categoryItem.id} categoryItem = {categoryItem} alt = {'Food'}/>
       })}
     </div>
   );

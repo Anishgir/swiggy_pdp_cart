@@ -4,7 +4,7 @@ import AppLogo from '../../atoms/appLogo/AppLogo';
 function SwiggyLogo() {
   return (
     <div>
-      <AppLogo/>
+      <AppLogo alt = {'App Logo'}/>
       <a href="/">Set location</a> 
       <a href="/">Click to Choose Location</a>
     </div>

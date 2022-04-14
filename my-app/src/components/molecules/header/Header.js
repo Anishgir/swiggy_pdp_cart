@@ -6,7 +6,7 @@ export default function Header() {
   return (
     <header>
       <div>
-        <SwiggyLogo />
+        <SwiggyLogo alt = {'Swiggy Logo'}/>
         <List />
       </div>
     </header>
