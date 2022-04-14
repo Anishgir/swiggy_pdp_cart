@@ -1,6 +1,6 @@
 import React,{useState,useEffect} from 'react';
 import Button from '../../atoms/button/Button';
-import cartCSS from './cart.module.css';
+import styles from './cart.module.css';
 
 function Cart() {
   const [cartData,setCartData] = useState([]);
@@ -21,17 +21,17 @@ function Cart() {
   },[]) ;
   if(!loading){
     return (
-      <div className={cartCSS.cart+'col-4'}>
-        <div className={cartCSS.cartDescription}>
-            <h3>Cart</h3>
-            <p>{lineItems.length} Items</p>
+      <div className={`${styles.cart} col-4`}>
+        <div className={styles.cartDescription}>
+            <h3 className={styles.heading}>Cart</h3>
+            <p className={styles.numberOfItems}>{lineItems.length} Items</p>
             <br />
-            <p className = {cartCSS.dishName}> {lineItems[0].name}</p>
-            <span>
-                <p>Subtotal</p>
-                <p> {'\u20B9'} {subTotal}</p>
+            <p className = {styles.dishName}> {lineItems[0].name}</p>
+            <span className={styles.subTotal}>
+                <p className={styles.reduceMargin}>Subtotal</p>
+                <p className={styles.reduceMargin}> {'\u20B9'} {subTotal}</p>
             </span>
-            <p className = {cartCSS.chargesDescription}>Extra charges may apply</p>
+            <p className = {styles.chargesDescription}>Extra charges may apply</p>
             <Button className = {'checkout-btn'} buttonName = {'Checkout'}/>
         </div>
       </div>

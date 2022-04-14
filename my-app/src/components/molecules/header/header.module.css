@@ -1,20 +1,20 @@
-header{
+.header{
     padding: 0.5rem 13.5rem;
-  }
-header div{
+}
+.header div{
 display: flex;
 flex-flow: row nowrap;
 justify-content: space-between;
 align-items: center;
 }
-header div ul{
+.header div ul{
 display: flex;
 }
-header div a{
+.header div a{
 font-weight: 700;
 color: #696969;
 margin-right: 1.4rem;
 }
-header div a:hover{
+.header div a:hover{
 color: #FFA500;
 }

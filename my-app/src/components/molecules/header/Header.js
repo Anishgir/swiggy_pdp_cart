@@ -1,10 +1,10 @@
 import React from 'react';
 import SwiggyLogo from './SwiggyLogo.js';
 import List from './List.js';
-import './styles.css';
+import styles from './header.module.css';
 export default function Header() {
   return (
-    <header>
+    <header className={styles.header}>
       <div>
         <SwiggyLogo alt = {'Swiggy Logo'}/>
         <List />

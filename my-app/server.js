@@ -5,6 +5,9 @@ const axios = require('axios');
 // initialise express app
 const app = express();
 
+var cors = require('cors');
+app.use(cors())
+
 // serve files from root
 app.use(express.static(__dirname));
 

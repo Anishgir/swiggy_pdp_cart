@@ -2,7 +2,7 @@ import React, {useState,useEffect} from 'react';
 import Categories from '../../molecules/categories/Categories.js';
 import MenuItems from '../../molecules/menuItems/MenuItems.js';
 import Cart from '../../molecules/cart/Cart.js';
-import './styles.css';
+import styles from './main.module.css';
 
 function fetchData(URL,setLoading,setData){
   const fetchPDPData = async () => {
@@ -24,7 +24,7 @@ function Main() {
     fetchData('http://localhost:8080/menu-items',setLoadingMenuItems,setMenuItems);
   },[]);
   return (
-    <main>
+    <main className={styles.main}>
       <Categories categories = {categories} setCategories = {setCategories} highLightedCategory = {highLightedCategory} setHighLightedCategory = {setHighLightedCategory} loadingCategories = {loadingCategories}/>
       <MenuItems categories = {categories} highLightedCategory = {highLightedCategory} menuItems = {menuItems} loadingCategories = {loadingCategories} loadingMenuItems = {loadingMenuItems}/>
       <Cart/>

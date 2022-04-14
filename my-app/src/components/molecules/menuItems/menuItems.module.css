@@ -1,0 +1,27 @@
+.menuItems{
+    border-right: 0.03rem solid #696969;
+    padding-left: 4rem;
+    padding-right: 4rem;
+  }
+.categoryInfo{
+  margin-bottom: 3rem;
+}
+.itemDescription{
+  display: flex;
+  justify-content: space-between;
+  margin-top: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 0.03rem solid #696969;
+  position: relative;
+}
+.dishName{
+  font-weight: 700;
+}
+.menuItems div h3{
+  margin-bottom: 0rem;
+}
+.menuItems div p{
+  margin-top: 0rem;
+  color: #696969;
+  font-weight: 500;
+}

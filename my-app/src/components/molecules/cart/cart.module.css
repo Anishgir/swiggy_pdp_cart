@@ -4,7 +4,7 @@
   .cartDescription{
     padding-right: 15rem;
   }
-  .cart div h3{
+  .heading{
     margin-bottom: 0rem;
   }
   .dishName{
@@ -12,7 +12,7 @@
     color: #696969;
     font-weight: 700;
   }
-  .cart div span{
+  .subTotal{
     display: flex;
     flex-flow: row wrap;
     align-items: center;
@@ -20,7 +20,7 @@
     margin-top: 0.5rem;
     margin-bottom: 0;
   }
-  .cart div span p{
+  .reduceMargin{
     margin: 0;
     padding: 0;
   }

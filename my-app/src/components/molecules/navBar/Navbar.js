@@ -1,5 +1,5 @@
 import React from 'react';
-import './styles.css';
+import styles from './navBar.module.css';
 
 export default function Navbar() {
   const navbar = [{id:'1',name:'home'},
@@ -9,7 +9,7 @@ export default function Navbar() {
   const navItems = navbar.map((item) => <li key = {item.id}><a href='/'>{item.name}</a></li>)
   return (
     <div>
-      <section className = "nav-bar">
+      <section className = {styles.navBar}>
          <nav>
             <ul>
                {navItems}
